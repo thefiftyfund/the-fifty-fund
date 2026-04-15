@@ -1,0 +1,20 @@
+{
+  "portfolio": {
+    "starting_capital": 50.00,
+    "current_value": 50.00,
+    "total_pnl": 0.00,
+    "total_pnl_pct": 0.00,
+    "cash": 50.00,
+    "updated_at": "2026-04-15T16:05:00",
+    "status": "PAPER_TRADING",
+    "total_trades": 0,
+    "win_rate": 0,
+    "cycles_run": 0
+  },
+  "history": [
+    { "date": "2026-04-15", "value": 50.00 }
+  ],
+  "holdings": [],
+  "trades": [],
+  "ai_reasoning": []
+}

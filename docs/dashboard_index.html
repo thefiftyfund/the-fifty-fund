@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Fifty Fund — Autonomous AI Trading Agent</title>
+<meta name="description" content="An AI trading agent starting with $50. Every trade decided by AI, zero human intervention. All decisions documented in real-time." />
+<meta property="og:title" content="The Fifty Fund" />
+<meta property="og:description" content="Autonomous AI trading agent. $50 start. Zero human trades." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --green: #00FF41;
+    --dim: #1a6b2a;
+    --faint: #0a3d12;
+    --border: #1a2e1a;
+    --bg: #060806;
+    --card: #0a0f0a;
+    --red: #ff4444;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* Scanlines */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(#0d110d 1px, transparent 1px), linear-gradient(90deg, #0d110d 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0a0a; }
+  ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--green); }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  .header {
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    animation: fadeUp 0.6s ease;
+  }
+
+  .header-label {
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+
+  .header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--green);
+    text-shadow: 0 0 30px rgba(0,255,65,0.08), 0 0 60px rgba(0,255,65,0.03);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--dim);
+    margin-top: 6px;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffaa00;
+    box-shadow: 0 0 8px rgba(255,170,0,0.4);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .status-dot.live { background: var(--green); box-shadow: 0 0 8px rgba(0,255,65,0.4); }
+
+  .status-label {
+    font-size: 12px;
+    color: #ffaa00;
+    letter-spacing: 1px;
+  }
+
+  .status-dot.live + .status-label { color: var(--green); }
+
+  .updated {
+    font-size: 11px;
+    color: var(--dim);
+    margin-top: 8px;
+  }
+
+  /* Cursor blink */
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--green);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blink 1.06s step-end infinite;
+  }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+    animation: fadeUp 0.6s ease 0.15s both;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 20px;
+    flex: 1 1 200px;
+    min-width: 160px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--dim);
+  }
+
+  .stat-card.positive::before { background: var(--green); box-shadow: 0 0 10px rgba(0,255,65,0.25); }
+  .stat-card.negative::before { background: var(--red); box-shadow: 0 0 10px rgba(255,68,68,0.25); }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green);
+    text-shadow: 0 0 15px rgba(0,255,65,0.1);
+    line-height: 1;
+  }
+
+  .stat-card.negative .stat-value { color: var(--red); text-shadow: 0 0 15px rgba(255,68,68,0.1); }
+
+  .stat-sub {
+    font-size: 11px;
+    color: var(--dim);
+    margin-top: 6px;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s ease 0.3s both;
+    overflow-x: auto;
+  }
+
+  .tab {
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--border);
+    border-radius: 6px 6px 0 0;
+    padding: 10px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+    white-space: nowrap;
+  }
+
+  .tab:hover { color: var(--green); }
+
+  .tab.active {
+    background: #0d1a0d;
+    border: 1px solid var(--dim);
+    border-bottom: 1px solid var(--bg);
+    color: var(--green);
+  }
+
+  .tab-count {
+    background: rgba(26,43,26,0.25);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 10px;
+  }
+
+  .tab.active .tab-count { background: rgba(0,255,65,0.1); }
+
+  /* Content */
+  .content {
+    background: rgba(10,15,10,0.5);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 24px;
+    min-height: 400px;
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+
+  .content-label {
+    font-size: 12px;
+    color: var(--dim);
+    margin-bottom: 16px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .empty-state h3 {
+    font-size: 18px;
+    color: var(--green);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .empty-state p {
+    font-size: 13px;
+    color: var(--dim);
+  }
+
+  .empty-state .dim { color: var(--faint); margin-top: 4px; }
+
+  /* Chart */
+  .chart-container {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .chart-container svg {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Trade journal */
+  .journal {
+    border: 1px solid #111a11;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .journal-header {
+    display: flex;
+    padding: 8px 16px;
+    font-size: 10px;
+    color: var(--dim);
+    background: #080d08;
+    letter-spacing: 1px;
+  }
+
+  .trade-row {
+    border-bottom: 1px solid #111a11;
+    cursor: pointer;
+  }
+
+  .trade-row-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    transition: background 0.2s;
+  }
+
+  .trade-row-main:hover { background: #0d140d; }
+
+  .trade-reasoning {
+    padding: 8px 16px 16px 108px;
+    font-size: 12px;
+    color: var(--dim);
+    line-height: 1.6;
+    border-left: 2px solid var(--faint);
+    margin-left: 16px;
+    display: none;
+  }
+
+  .trade-row.expanded .trade-reasoning { display: block; }
+  .trade-row.expanded .trade-arrow { transform: rotate(90deg); }
+
+  .trade-arrow { color: var(--dim); transition: transform 0.2s; }
+
+  .buy { color: var(--green); font-weight: 700; }
+  .sell { color: var(--red); font-weight: 700; }
+  .pnl-pos { color: var(--green); }
+  .pnl-neg { color: var(--red); }
+
+  /* Holdings */
+  .alloc-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: #111a11;
+  }
+
+  .holding-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--card);
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .holding-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  /* AI log */
+  .log-entry {
+    background: #080d08;
+    border: 1px solid #111a11;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .log-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+
+  .log-body {
+    font-size: 13px;
+    color: #338833;
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--dim);
+    animation: fadeUp 0.6s ease 0.5s both;
+  }
+
+  /* Loading */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 16px;
+  }
+
+  .loading-bar {
+    width: 200px;
+    height: 3px;
+    background: #111a11;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .loading-fill {
+    width: 40%;
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+    animation: loadSlide 1.5s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(0,255,65,0.3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @keyframes loadSlide {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(250%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header { flex-direction: column; gap: 16px; }
+    .header-right { text-align: left; }
+    .header h1 { font-size: 28px; }
+    .stat-value { font-size: 22px; }
+    .tab { padding: 8px 14px; font-size: 12px; }
+    .journal-header { display: none; }
+    .trade-row-main { flex-wrap: wrap; font-size: 12px; }
+    .footer { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+  <div class="loading">
+    <div style="font-size: 14px; color: var(--dim);">&gt; initializing dashboard<span class="cursor"></span></div>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+  </div>
+</div>
+
+<script>
+// ─── Data loading ───
+const DATA_URL = './data.json';
+const DEFAULT_DATA = {
+  portfolio: {
+    starting_capital: 50.00,
+    current_value: 50.00,
+    total_pnl: 0.00,
+    total_pnl_pct: 0.00,
+    cash: 50.00,
+    updated_at: new Date().toISOString(),
+    status: "PAPER_TRADING",
+    total_trades: 0,
+    win_rate: 0,
+    cycles_run: 0
+  },
+  history: [{ date: new Date().toISOString().slice(0,10), value: 50.00 }],
+  holdings: [],
+  trades: [],
+  ai_reasoning: []
+};
+
+let data = DEFAULT_DATA;
+let activeTab = 'chart';
+
+async function loadData() {
+  try {
+    const resp = await fetch(DATA_URL + '?t=' + Date.now());
+    if (resp.ok) {
+      data = await resp.json();
+    }
+  } catch (e) {
+    console.log('Using default data:', e.message);
+  }
+  render();
+}
+
+// ─── Rendering ───
+function render() {
+  const p = data.portfolio;
+  const pnlPos = p.total_pnl >= 0;
+  const pnlClass = p.total_pnl === 0 ? '' : (pnlPos ? 'positive' : 'negative');
+  const statusClass = p.status === 'LIVE' ? 'live' : '';
+  const cashPct = p.current_value > 0 ? ((p.cash / p.current_value) * 100).toFixed(0) : '100';
+
+  document.getElementById('app').innerHTML = `
+    <!-- Header -->
+    <header class="header">
+      <div>
+        <div class="header-label">&gt; AUTONOMOUS AI TRADING AGENT</div>
+        <h1>THE FIFTY FUND</h1>
+        <div class="header-sub">$50 start · zero human trades · every decision documented<span class="cursor"></span></div>
+      </div>
+      <div class="header-right">
+        <div class="status">
+          <div class="status-dot ${statusClass}"></div>
+          <span class="status-label" ${statusClass === 'live' ? 'style="color:var(--green)"' : ''}>${p.status}</span>
+        </div>
+        <div class="updated">Last update: ${new Date(p.updated_at).toLocaleString()}</div>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Portfolio Value</div>
+        <div class="stat-value">$${p.current_value.toFixed(2)}</div>
+        <div class="stat-sub">Started at $${p.starting_capital.toFixed(2)}</div>
+      </div>
+      <div class="stat-card ${pnlClass}">
+        <div class="stat-label">Total P&amp;L</div>
+        <div class="stat-value">${pnlPos ? '+' : ''}$${p.total_pnl.toFixed(2)}</div>
+        <div class="stat-sub">${pnlPos ? '+' : ''}${p.total_pnl_pct.toFixed(2)}%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Cash</div>
+        <div class="stat-value">$${p.cash.toFixed(2)}</div>
+        <div class="stat-sub">${cashPct}% of portfolio</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Trades</div>
+        <div class="stat-value">${p.total_trades}</div>
+        <div class="stat-sub">${p.win_rate}% win rate</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab ${activeTab === 'chart' ? 'active' : ''}" onclick="switchTab('chart')">📈 Performance</button>
+      <button class="tab ${activeTab === 'journal' ? 'active' : ''}" onclick="switchTab('journal')">📋 Trade Journal <span class="tab-count">${data.trades.length}</span></button>
+      <button class="tab ${activeTab === 'holdings' ? 'active' : ''}" onclick="switchTab('holdings')">💼 Holdings <span class="tab-count">${data.holdings.length}</span></button>
+      <button class="tab ${activeTab === 'ai' ? 'active' : ''}" onclick="switchTab('ai')">🧠 AI Log</button>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      ${renderTab()}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>&gt; github.com/thefiftyfund/the-fifty-fund</span>
+      <span>POWERED BY CLAUDE AI</span>
+    </footer>
+  `;
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  render();
+}
+
+function renderTab() {
+  switch(activeTab) {
+    case 'chart': return renderChart();
+    case 'journal': return renderJournal();
+    case 'holdings': return renderHoldings();
+    case 'ai': return renderAILog();
+    default: return '';
+  }
+}
+
+// ─── Chart ───
+function renderChart() {
+  const history = data.history;
+  if (history.length <= 1) {
+    return `
+      <div class="content-label">&gt; PORTFOLIO VALUE OVER TIME</div>
+      <div class="empty-state">
+        <h3>AWAITING FIRST TRADE</h3>
+        <p>The agent will begin trading during NYSE market hours (9:30 AM – 4:00 PM ET)</p>
+        <p class="dim">Chart data will populate as trades execute</p>
+      </div>`;
+  }
+
+  const W = 800, H = 300;
+  const pad = { t: 30, r: 20, b: 40, l: 60 };
+  const vals = history.map(h => h.value);
+  const min = Math.min(...vals) * 0.98;
+  const max = Math.max(...vals) * 1.02;
+  const range = max - min || 1;
+
+  const getX = i => pad.l + (i / Math.max(history.length - 1, 1)) * (W - pad.l - pad.r);
+  const getY = v => pad.t + (1 - (v - min) / range) * (H - pad.t - pad.b);
+
+  const linePath = history.map((h, i) => `${i === 0 ? 'M' : 'L'} ${getX(i).toFixed(1)} ${getY(h.value).toFixed(1)}`).join(' ');
+  const areaPath = `${linePath} L ${getX(history.length-1).toFixed(1)} ${(H-pad.b)} L ${getX(0).toFixed(1)} ${(H-pad.b)} Z`;
+
+  const gridLines = 5;
+  let gridSvg = '';
+  for (let i = 0; i < gridLines; i++) {
+    const v = min + (range * i) / (gridLines - 1);
+    const y = getY(v).toFixed(1);
+    gridSvg += `<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="#1a2e1a" stroke-width="1"/>`;
+    gridSvg += `<text x="${pad.l-8}" y="${(+y+4)}" text-anchor="end" fill="#1a6b2a" font-size="11" font-family="JetBrains Mono,monospace">$${v.toFixed(0)}</text>`;
+  }
+
+  // Date labels
+  let dateSvg = '';
+  const step = Math.max(1, Math.floor(history.length / 6));
+  for (let i = 0; i < history.length; i += step) {
+    dateSvg += `<text x="${getX(i).toFixed(1)}" y="${H-pad.b+20}" text-anchor="middle" fill="#1a6b2a" font-size="10" font-family="JetBrains Mono,monospace">${history[i].date.slice(5)}</text>`;
+  }
+
+  return `
+    <div class="content-label">&gt; PORTFOLIO VALUE OVER TIME</div>
+    <div class="chart-container">
+      <svg viewBox="0 0 ${W} ${H}">
+        <defs>
+          <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00FF41" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#00FF41" stop-opacity="0.01"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        ${gridSvg}
+        ${dateSvg}
+        <path d="${areaPath}" fill="url(#chartGrad)"/>
+        <path d="${linePath}" fill="none" stroke="#00FF41" stroke-width="2" filter="url(#glow)"/>
+      </svg>
+    </div>`;
+}
+
+// ─── Journal ───
+function renderJournal() {
+  if (data.trades.length === 0) {
+    return `
+      <div class="content-label">&gt; TRADE JOURNAL — CLICK ANY TRADE TO SEE AI REASONING</div>
+      <div class="empty-state">
+        <h3>NO TRADES YET</h3>
+        <p>Every trade will appear here with full AI reasoning</p>
+      </div>`;
+  }
+
+  const rows = data.trades.map((t, i) => `
+    <div class="trade-row" id="trade-${i}" onclick="toggleTrade(${i})">
+      <div class="trade-row-main">
+        <span style="color:var(--dim);width:90px">${t.date}</span>
+        <span style="color:#888;width:30px">${t.time || ''}</span>
+        <span class="${t.action === 'BUY' ? 'buy' : 'sell'}" style="width:45px">${t.action}</span>
+        <span style="color:var(--green);width:70px">${t.ticker}</span>
+        <span style="color:#666;flex:1">${t.shares} shares @ $${t.price}</span>
+        <span class="${t.pnl >= 0 ? 'pnl-pos' : 'pnl-neg'}" style="width:80px;text-align:right">${t.pnl >= 0 ? '+' : ''}$${t.pnl.toFixed(2)}</span>
+        <span class="trade-arrow">▶</span>
+      </div>
+      <div class="trade-reasoning">
+        <div style="color:var(--dim);margin-bottom:4px">&gt; AI REASONING:</div>
+        <div style="color:#338833">${t.reasoning || 'No reasoning recorded'}</div>
+      </div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="content-label">&gt; TRADE JOURNAL — CLICK ANY TRADE TO SEE AI REASONING</div>
+    <div class="journal">
+      <div class="journal-header">
+        <span style="width:90px">DATE</span>
+        <span style="width:30px">TIME</span>
+        <span style="width:45px">ACTION</span>
+        <span style="width:70px">TICKER</span>
+        <span style="flex:1">DETAILS</span>
+        <span style="width:80px;text-align:right">P&amp;L</span>
+        <span style="width:20px"></span>
+      </div>
+      ${rows}
+    </div>`;
+}
+
+function toggleTrade(i) {
+  const el = document.getElementById('trade-' + i);
+  el.classList.toggle('expanded');
+}
+
+// ─── Holdings ───
+function renderHoldings() {
+  if (data.holdings.length === 0) {
+    return `
+      <div class="content-label">&gt; CURRENT HOLDINGS &amp; ALLOCATION</div>
+      <div class="empty-state">
+        <h3>&gt; NO POSITIONS — 100% CASH</h3>
+        <p>Holdings will appear here as the agent takes positions</p>
+      </div>`;
+  }
+
+  const total = data.portfolio.current_value;
+  const colors = data.holdings.map((_, i) => `hsl(${130 + i * 20}, 80%, ${35 + i * 5}%)`);
+
+  const barSegments = data.holdings.map((h, i) =>
+    `<div style="width:${((h.value/total)*100).toFixed(1)}%;background:${colors[i]};transition:width 0.5s"></div>`
+  ).join('');
+
+  const items = data.holdings.map((h, i) => `
+    <div class="holding-item">
+      <div>
+        <span class="holding-dot" style="background:${colors[i]}"></span>
+        <span style="color:var(--green);font-weight:700">${h.ticker}</span>
+        <span style="color:var(--dim);margin-left:10px">${h.shares} shares</span>
+      </div>
+      <div style="display:flex;gap:20px">
+        <span style="color:#666">$${h.value.toFixed(2)}</span>
+        <span style="color:${h.pnl_pct >= 0 ? 'var(--green)' : 'var(--red)'}">${h.pnl_pct >= 0 ? '+' : ''}${h.pnl_pct.toFixed(1)}%</span>
+      </div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="content-label">&gt; CURRENT HOLDINGS &amp; ALLOCATION</div>
+    <div class="alloc-bar">${barSegments}</div>
+    ${items}`;
+}
+
+// ─── AI Log ───
+function renderAILog() {
+  if (data.ai_reasoning.length === 0) {
+    return `
+      <div class="content-label">&gt; AI DECISION LOG — FULL REASONING FOR EVERY CYCLE</div>
+      <div class="empty-state">
+        <h3>REASONING LOG EMPTY</h3>
+        <p>Every 30-minute cycle's AI analysis will be logged here</p>
+      </div>`;
+  }
+
+  const entries = data.ai_reasoning.map(e => {
+    const decColor = e.decision === 'BUY' ? 'var(--green)' : e.decision === 'SELL' ? 'var(--red)' : '#666';
+    return `
+      <div class="log-entry">
+        <div class="log-header">
+          <span style="color:var(--dim)">${e.timestamp}</span>
+          <span style="color:${decColor}">${e.decision}</span>
+        </div>
+        <div class="log-body">${e.reasoning}</div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="content-label">&gt; AI DECISION LOG — FULL REASONING FOR EVERY CYCLE</div>
+    ${entries}`;
+}
+
+// ─── Init ───
+loadData();
+
+// Auto-refresh every 5 minutes
+setInterval(loadData, 5 * 60 * 1000);
+</script>
+</body>
+</html>
