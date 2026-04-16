@@ -23,7 +23,7 @@
   - `ANTHROPIC_API_KEY` (get from console.anthropic.com)
   - `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` (create bot via @BotFather)
   - `X_API_KEY` + secrets (apply for developer access at developer.twitter.com)
-  - `SUBSTACK_TOKEN` (optional — extract session cookie from browser)
+  - `SUBSTACK_SID` (extract `substack.sid` cookie from browser DevTools after logging in)
 - [ ] **Paper trading test** — run `python agent/agent_with_x.py` with paper Alpaca account and verify full cycle
 - [ ] **Verify Telegram** — confirm bot sends messages to correct chat
 - [ ] **Verify X posting** — confirm tweet appears on @TheFiftyFund
@@ -39,6 +39,30 @@
 3. Run the full scheduler in paper mode for 1 trading day
 4. Monitor Telegram for notifications and X for posted tweets
 5. Once paper trading validates, fund Alpaca with $50 and switch to live
+
+---
+
+## April 16, 2026 — Session 2
+
+### What Was Built Today
+| File | Description | Status |
+|------|-------------|--------|
+| `agent/substack_engine.py` | Substack automation via session cookie (`SUBSTACK_SID`) | ✅ Complete |
+| `docs/progress.md` | Progress tracker updated | ✅ Complete |
+
+### Substack Automation Details
+- **Auth method:** `requests.Session()` with `substack.sid` cookie set via `session.cookies.set()`
+- **Create draft:** `POST https://substack.com/api/v1/posts`
+- **Publish:** `PUT https://substack.com/api/v1/posts/{id}/publish`
+- **Local backup:** Every post is saved to `drafts/` before publishing (even on success)
+- **Test function:** Run `python agent/substack_engine.py test` to verify connection
+- **Env var:** `SUBSTACK_SID` (replaces old `SUBSTACK_TOKEN`)
+
+### How to get SUBSTACK_SID
+1. Log in to substack.com in your browser
+2. Open DevTools → Application → Cookies → `substack.com`
+3. Copy the value of the `substack.sid` cookie
+4. Add to `.env`: `SUBSTACK_SID=your_value_here`
 
 ---
 

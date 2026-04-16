@@ -2,7 +2,8 @@
 substack_engine.py — AI-authored Substack content engine for The Fifty Fund
 ============================================================================
 Uses Claude AI to write all content in first-person as AlgoMind (the agent).
-Posts drafts to Substack if configured; otherwise saves them locally to drafts/.
+Authenticates to Substack using the SUBSTACK_SID session cookie.
+Always saves a local backup to drafts/ alongside every Substack publish.
 
 Publishing schedule (enforced by agent_with_x.py scheduler):
   - Weekly portfolio review   → every Friday
@@ -14,6 +15,7 @@ All API credentials are loaded from environment variables / .env file.
 
 import logging
 import os
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -29,7 +31,7 @@ logger = logging.getLogger(__name__)
 # ── Config ────────────────────────────────────────────────────────────────────
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
-SUBSTACK_TOKEN    = os.getenv("SUBSTACK_TOKEN", "")     # session cookie value
+SUBSTACK_SID      = os.getenv("SUBSTACK_SID", "")   # value of substack.sid cookie
 SUBSTACK_PUB      = os.getenv("SUBSTACK_PUB", "thefiftyfund")
 
 CLAUDE_MODEL  = "claude-sonnet-4-20250514"
@@ -42,6 +44,17 @@ DRAFTS_DIR.mkdir(exist_ok=True)
 # ── Clients ───────────────────────────────────────────────────────────────────
 
 claude = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+
+def _get_substack_session() -> requests.Session:
+    """Return a requests.Session authenticated with the Substack session cookie."""
+    session = requests.Session()
+    session.cookies.set("substack.sid", SUBSTACK_SID, domain="substack.com")
+    session.headers.update({
+        "Content-Type": "application/json",
+        "User-Agent": "TheFiftyFund/1.0",
+    })
+    return session
 
 
 # ── Claude Content Generation ─────────────────────────────────────────────────
@@ -100,7 +113,7 @@ def _trades_context(trades: list) -> str:
 
 def generate_weekly_review(portfolio: dict, trades_this_week: list) -> str:
     """
-    Generate and publish (or save) a weekly Substack portfolio review post.
+    Generate and publish a weekly Substack portfolio review post.
 
     Args:
         portfolio:         Current portfolio snapshot dict.
@@ -155,7 +168,7 @@ Return ONLY the post body (no YAML front matter, no title line at the top — ju
     body = _call_claude(prompt, max_tokens=2000)
 
     title = f"Weekly Review: {week} — {_portfolio_context(portfolio).split(chr(10))[0]}"
-    _publish_or_save(title, body, post_type="weekly_review")
+    _publish_and_save(title, body, post_type="weekly_review")
 
     return body
 
@@ -164,7 +177,7 @@ Return ONLY the post body (no YAML front matter, no title line at the top — ju
 
 def generate_monthly_deep_dive(portfolio: dict) -> str:
     """
-    Generate and publish (or save) a monthly deep-dive Substack post.
+    Generate and publish a monthly deep-dive Substack post.
     Called on the 1st of each month.
 
     Args:
@@ -214,7 +227,7 @@ Return ONLY the post body (no title line, no front matter)."""
     body = _call_claude(prompt, max_tokens=3000)
 
     title = f"Monthly Deep Dive: {month}"
-    _publish_or_save(title, body, post_type="monthly_deep_dive")
+    _publish_and_save(title, body, post_type="monthly_deep_dive")
 
     return body
 
@@ -223,7 +236,7 @@ Return ONLY the post body (no title line, no front matter)."""
 
 def generate_milestone_post(milestone_key: str, portfolio: dict) -> str:
     """
-    Generate and publish (or save) a milestone Substack post.
+    Generate and publish a milestone Substack post.
 
     Args:
         milestone_key: One of the keys from MILESTONE_DEFS in x_poster.py.
@@ -264,76 +277,91 @@ Return ONLY the post body (no title line, no front matter)."""
 
     body = _call_claude(prompt, max_tokens=1500)
 
-    title = label
-    _publish_or_save(title, body, post_type=f"milestone_{milestone_key}")
+    _publish_and_save(label, body, post_type=f"milestone_{milestone_key}")
 
     return body
 
 
-# ── Publish or Save Locally ───────────────────────────────────────────────────
+# ── Publish + Local Backup ────────────────────────────────────────────────────
 
-def _publish_or_save(title: str, body: str, post_type: str) -> None:
+def _publish_and_save(title: str, body: str, post_type: str) -> None:
     """
-    Attempt to publish a draft to Substack via their API.
-    Falls back to saving a local Markdown file in drafts/ if Substack is not
-    configured or if the API call fails.
+    Always save a local backup to drafts/, then publish to Substack if configured.
+    The local backup is written first so it exists even if publishing fails.
     """
-    if SUBSTACK_TOKEN and SUBSTACK_PUB:
-        success = _publish_to_substack(title, body)
-        if success:
-            return
-        logger.warning("Substack publish failed — saving draft locally instead.")
-
     _save_draft_locally(title, body, post_type)
+
+    if SUBSTACK_SID and SUBSTACK_PUB:
+        _publish_to_substack(title, body)
+    else:
+        logger.info("SUBSTACK_SID not set — post saved locally only.")
 
 
 def _publish_to_substack(title: str, body: str) -> bool:
     """
-    Create a draft on Substack using the unofficial REST API.
+    Create a draft on Substack then immediately publish it.
 
-    Substack does not have a fully public API; this uses the session-auth
-    endpoint that the web app itself uses.  The SUBSTACK_TOKEN env var should
-    contain the value of the `substack.sid` cookie from an active session.
+    Uses session cookie auth (SUBSTACK_SID env var):
+      1. POST https://substack.com/api/v1/posts  → creates draft, returns post id
+      2. PUT  https://substack.com/api/v1/posts/{id}/publish  → publishes it
 
-    Returns True on apparent success, False otherwise.
+    Returns True on success, False otherwise.
     """
-    url = f"https://{SUBSTACK_PUB}.substack.com/api/v1/drafts"
-    headers = {
-        "Content-Type": "application/json",
-        "Cookie": f"substack.sid={SUBSTACK_TOKEN}",
-        "User-Agent": "TheFiftyFund/1.0",
-    }
-    # Wrap body in minimal HTML for Substack's rich-text editor
+    session = _get_substack_session()
+
+    # Convert Markdown body to minimal HTML for Substack's editor
     html_body = "\n".join(
         f"<p>{line}</p>" if line.strip() else "<p><br/></p>"
         for line in body.split("\n")
     )
+
+    # Step 1: Create draft
+    create_url = "https://substack.com/api/v1/posts"
     payload = {
-        "draft_title":   title,
-        "draft_body":    html_body,
-        "draft_subtitle": "The Fifty Fund — autonomous AI trading, documented in public.",
-        "type":          "newsletter",
+        "title":          title,
+        "body_html":      html_body,
+        "subtitle":       "The Fifty Fund — autonomous AI trading, documented in public.",
+        "publication_id": SUBSTACK_PUB,
+        "type":           "newsletter",
+        "draft":          True,
     }
     try:
-        resp = requests.post(url, json=payload, headers=headers, timeout=15)
-        if resp.status_code in (200, 201):
-            logger.info("Substack draft created: %s", title)
+        resp = session.post(create_url, json=payload, timeout=15)
+        if resp.status_code not in (200, 201):
+            logger.warning(
+                "Substack create draft failed (%s): %s",
+                resp.status_code, resp.text[:200],
+            )
+            return False
+        post_id = resp.json().get("id")
+        if not post_id:
+            logger.warning("Substack create response missing 'id': %s", resp.text[:200])
+            return False
+        logger.info("Substack draft created (id=%s): %s", post_id, title)
+    except requests.RequestException as exc:
+        logger.error("Substack create request failed: %s", exc)
+        return False
+
+    # Step 2: Publish the draft
+    publish_url = f"https://substack.com/api/v1/posts/{post_id}/publish"
+    try:
+        pub_resp = session.put(publish_url, json={}, timeout=15)
+        if pub_resp.status_code in (200, 201, 204):
+            logger.info("Substack post published (id=%s): %s", post_id, title)
             return True
         logger.warning(
-            "Substack API returned %s: %s", resp.status_code, resp.text[:200]
+            "Substack publish failed (%s): %s",
+            pub_resp.status_code, pub_resp.text[:200],
         )
         return False
     except requests.RequestException as exc:
-        logger.error("Substack request failed: %s", exc)
+        logger.error("Substack publish request failed: %s", exc)
         return False
 
 
 def _save_draft_locally(title: str, body: str, post_type: str) -> None:
-    """
-    Save the generated post as a Markdown file in the drafts/ directory.
-    Filename includes date and post type for easy identification.
-    """
-    now_str  = datetime.now().strftime("%Y-%m-%d")
+    """Save the generated post as a Markdown file in the drafts/ directory."""
+    now_str   = datetime.now().strftime("%Y-%m-%d_%H%M")
     safe_type = post_type.replace(" ", "_").lower()
     filename  = DRAFTS_DIR / f"{now_str}_{safe_type}.md"
 
@@ -345,3 +373,41 @@ def _save_draft_locally(title: str, body: str, post_type: str) -> None:
         logger.info("Draft saved locally: %s", filename)
     except OSError as exc:
         logger.error("Could not save draft locally: %s", exc)
+
+
+# ── Test Function ─────────────────────────────────────────────────────────────
+
+def test_post() -> None:
+    """
+    Publish a single test post to verify the Substack connection works.
+    Requires SUBSTACK_SID to be set in the environment.
+    """
+    if not SUBSTACK_SID:
+        print("ERROR: SUBSTACK_SID environment variable is not set.")
+        print("Set it to the value of your substack.sid session cookie.")
+        return
+
+    title = f"[TEST] AlgoMind connection check — {datetime.now().strftime('%Y-%m-%d %H:%M')}"
+    body  = (
+        "I am AlgoMind, the autonomous trading agent behind The Fifty Fund. "
+        "This is an automated connection test to verify that my Substack "
+        "publishing pipeline is working correctly. You can delete this post.\n\n"
+        f"Published at: {datetime.now().isoformat()}"
+    )
+
+    print(f"Creating test post: {title}")
+    _save_draft_locally(title, body, "test_post")
+
+    success = _publish_to_substack(title, body)
+    if success:
+        print("Test post published successfully.")
+    else:
+        print("Test post FAILED — check logs or verify SUBSTACK_SID is valid.")
+
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    if len(sys.argv) > 1 and sys.argv[1] == "test":
+        test_post()
+    else:
+        print("Usage: python substack_engine.py test")
