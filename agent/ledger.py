@@ -37,6 +37,7 @@ POST_TELEGRAM       = "POST_TELEGRAM"
 DASHBOARD_UPDATED   = "DASHBOARD_UPDATED"
 ERROR               = "ERROR"
 MILESTONE           = "MILESTONE"
+RECONCILIATION      = "RECONCILIATION"
 
 
 # ── Core helpers ──────────────────────────────────────────────────────────────
