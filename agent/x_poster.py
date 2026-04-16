@@ -48,8 +48,12 @@ MILESTONE_DEFS = [
 ]
 
 # Milestones file at repo root (one level up from agent/)
-_REPO_ROOT     = Path(__file__).resolve().parent.parent
+_REPO_ROOT      = Path(__file__).resolve().parent.parent
 MILESTONES_FILE = _REPO_ROOT / "milestones_hit.json"
+
+# data.json is pushed to GitHub after every cycle — milestone state stored
+# there too so Railway redeploys don't re-fire milestones.
+_DATA_JSON_PATH = _REPO_ROOT / "docs" / "data.json"
 
 
 # ── Tweepy Client ─────────────────────────────────────────────────────────────
@@ -102,23 +106,57 @@ def _post(text: str) -> bool:
 # ── Milestone Tracker ─────────────────────────────────────────────────────────
 
 def _load_milestones() -> dict:
-    """Load the milestones_hit.json file, creating it with defaults if absent."""
+    """
+    Load milestone state. Prefers data.json (pushed to GitHub, survives
+    Railway redeploys) over the local milestones_hit.json fallback.
+    """
     default = {key: False for key, _, _ in MILESTONE_DEFS}
+
+    # Primary: data.json is git-tracked and pushed after every cycle
+    if _DATA_JSON_PATH.exists():
+        try:
+            with open(_DATA_JSON_PATH) as f:
+                dashboard = json.load(f)
+            stored = dashboard.get("milestones_hit", {})
+            if stored:
+                for key in default:
+                    default[key] = bool(stored.get(key, False))
+                return default
+        except (json.JSONDecodeError, OSError) as exc:
+            logger.warning("Could not read milestones from data.json: %s", exc)
+
+    # Fallback: legacy local file (useful in local dev)
     if MILESTONES_FILE.exists():
         try:
             with open(MILESTONES_FILE) as f:
                 data = json.load(f)
-            # Ensure all keys present (safe upgrade if new milestones added later)
             for key in default:
                 data.setdefault(key, False)
             return data
         except (json.JSONDecodeError, OSError) as exc:
             logger.warning("Could not read milestones file: %s — using defaults.", exc)
+
     return default
 
 
 def _save_milestones(data: dict) -> None:
-    """Persist milestones to disk."""
+    """
+    Persist milestone state to both data.json and the legacy local file.
+    data.json is pushed to GitHub after each cycle, so milestones survive
+    Railway redeploys.
+    """
+    # Primary: embed in data.json so the cycle-end push includes it
+    if _DATA_JSON_PATH.exists():
+        try:
+            with open(_DATA_JSON_PATH) as f:
+                dashboard = json.load(f)
+            dashboard["milestones_hit"] = data
+            with open(_DATA_JSON_PATH, "w") as f:
+                json.dump(dashboard, f, indent=2)
+        except (json.JSONDecodeError, OSError) as exc:
+            logger.warning("Could not write milestones to data.json: %s", exc)
+
+    # Legacy: also write standalone file for local dev convenience
     try:
         with open(MILESTONES_FILE, "w") as f:
             json.dump(data, f, indent=2)

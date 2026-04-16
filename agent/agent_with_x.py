@@ -144,15 +144,21 @@ def run_cycle() -> None:
             tg_msg,
         )
 
-        # ── X post — capture tweet text for dashboard storage ─────────────────
-        tweet_text = xp.post_trade_decision(decision)
-        try:
-            append_ai_log(
-                f"Trade posted to X: {(tweet_text or '')[:100]}",
-                ["x-post", "trade"],
-            )
-        except Exception:
-            pass
+        # ── X post — only if the trade was actually executed ─────────────────
+        # Skip X for REJECTED and ERROR results to avoid tweeting false trades.
+        # HOLD, BUY, and SELL all post normally.
+        tweet_text = None
+        if not result.startswith(("REJECTED", "ERROR")):
+            tweet_text = xp.post_trade_decision(decision)
+            try:
+                append_ai_log(
+                    f"Trade posted to X: {(tweet_text or '')[:100]}",
+                    ["x-post", "trade"],
+                )
+            except Exception:
+                pass
+        else:
+            logger.info("X post skipped — result was: %s", result[:80])
 
         # ── Dashboard update with tweet text (BUY/SELL only) ─────────────────
         if action in ("BUY", "SELL"):
