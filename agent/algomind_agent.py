@@ -15,6 +15,7 @@ import json
 import logging
 import os
 import smtplib
+import subprocess
 import time
 from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
@@ -54,6 +55,8 @@ EMAIL_FROM     = os.getenv("EMAIL_FROM", "")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD", "")
 EMAIL_TO       = os.getenv("EMAIL_TO", "")
 
+GITHUB_TOKEN   = os.getenv("GITHUB_TOKEN", "")
+
 TICKERS = ["AAPL", "NVDA", "MSFT", "AMZN", "META", "TSLA", "GOOGL", "SPY", "QQQ"]
 
 CLAUDE_MODEL    = "claude-sonnet-4-20250514"
@@ -62,6 +65,9 @@ CASH_BUFFER     = 2.00           # always keep $2 in cash
 MAX_POSITION_PCT = 0.30          # cap any single position at 30% of portfolio
 
 ET_ZONE = pytz.timezone("America/New_York")
+
+_REPO_ROOT      = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+_DATA_JSON_PATH = os.path.join(_REPO_ROOT, "docs", "data.json")
 
 # ── API Clients ───────────────────────────────────────────────────────────────
 
@@ -367,6 +373,7 @@ def execute_trade(decision: dict) -> str:
         logger.warning("Trade rejected by guardrails: %s", validation_reason)
         return f"REJECTED ({action} {ticker}) — {validation_reason}"
 
+    result = None
     try:
         if action == "BUY":
             dollar_amount = float(decision.get("dollar_amount") or 0)
@@ -379,7 +386,7 @@ def execute_trade(decision: dict) -> str:
                 type="market",
                 time_in_force="day",
             )
-            return f"BUY ${dollar_amount:.2f} of {ticker} — {reason}"
+            result = f"BUY ${dollar_amount:.2f} of {ticker} — {reason}"
 
         elif action == "SELL":
             qty = float(decision.get("qty") or 0)
@@ -392,13 +399,22 @@ def execute_trade(decision: dict) -> str:
                 type="market",
                 time_in_force="day",
             )
-            return f"SELL {qty} shares of {ticker} — {reason}"
+            result = f"SELL {qty} shares of {ticker} — {reason}"
 
     except Exception as exc:
         logger.error("Trade execution error: %s", exc)
         return f"ERROR: {action} {ticker} failed — {exc}"
 
-    return "HOLD — unrecognised action"
+    if result is None:
+        return "HOLD — unrecognised action"
+
+    try:
+        update_dashboard_data(decision, result, portfolio)
+        push_dashboard_to_github(action, ticker)
+    except Exception as exc:
+        logger.error("Dashboard update failed (trade was still executed): %s", exc)
+
+    return result
 
 
 # ── Notifications ─────────────────────────────────────────────────────────────
@@ -439,6 +455,207 @@ def send_email(subject: str, body: str) -> None:
         logger.info("Email sent: %s", subject)
     except Exception as exc:
         logger.warning("Email send failed: %s", exc)
+
+
+# ── Dashboard ────────────────────────────────────────────────────────────────
+
+def _compute_win_rate(trades: list) -> float | None:
+    """
+    Match BUY→SELL round-trips per ticker (FIFO).
+    Returns None when no closed trips exist yet.
+    """
+    open_buys: dict = {}
+    wins  = 0
+    total = 0
+    for t in trades:
+        action = t.get("action", "")
+        ticker = t.get("ticker", "")
+        price  = float(t.get("price") or 0)
+        if action == "BUY" and ticker:
+            open_buys.setdefault(ticker, []).append(price)
+        elif action == "SELL" and ticker and open_buys.get(ticker):
+            buy_price = open_buys[ticker].pop(0)  # FIFO
+            total += 1
+            if price > buy_price:
+                wins += 1
+    return round(wins / total * 100, 1) if total else None
+
+
+def update_dashboard_data(decision: dict, trade_result: str, portfolio: dict) -> None:
+    """
+    Load docs/data.json, append this trade's entries, recalculate live fields,
+    and write back.
+
+    `portfolio` is the pre-trade snapshot passed from execute_trade (used for
+    SELL price approximation). A fresh post-trade snapshot is fetched
+    internally for all current-state fields.
+    """
+    action    = (decision.get("action") or "HOLD").upper()
+    ticker    = decision.get("ticker") or ""
+    now_et    = datetime.now(ET_ZONE)
+    timestamp = now_et.isoformat()
+    today_str = now_et.date().isoformat()
+
+    # ── Load existing data ────────────────────────────────────────────────────
+    try:
+        with open(_DATA_JSON_PATH) as fh:
+            data = json.load(fh)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {
+            "portfolio_value":    STARTING_CASH,
+            "starting_capital":   STARTING_CASH,
+            "total_return":       0.0,
+            "total_trades":       0,
+            "win_rate":           None,
+            "start_date":         None,
+            "cash":               STARTING_CASH,
+            "holdings":           [],
+            "trades":             [],
+            "performance_history": [],
+            "ai_log":             [],
+            "last_updated":       None,
+        }
+
+    # ── Fresh post-trade portfolio state ─────────────────────────────────────
+    fresh     = get_portfolio()
+    positions = alpaca.list_positions()
+    pv        = fresh["portfolio_value"]
+    cash      = fresh["cash"]
+
+    # ── Preserve start_date (set once on first trade) ─────────────────────────
+    if not data.get("start_date"):
+        data["start_date"] = today_str
+
+    # ── Build holdings list from live positions ───────────────────────────────
+    holdings = []
+    for p in positions:
+        qty        = float(p.qty)
+        avg_cost   = float(p.avg_entry_price)
+        cur_price  = float(p.current_price)
+        mkt_val    = float(p.market_value)
+        unreal_pl  = float(p.unrealized_pl)
+        cost_basis = avg_cost * qty
+        unreal_pct = round(unreal_pl / cost_basis * 100, 2) if cost_basis else 0.0
+        holdings.append({
+            "ticker":            p.symbol,
+            "qty":               round(qty, 6),
+            "avg_cost":          round(avg_cost, 4),
+            "current_price":     round(cur_price, 4),
+            "market_value":      round(mkt_val, 2),
+            "unrealized_pl":     round(unreal_pl, 2),
+            "unrealized_pl_pct": unreal_pct,
+        })
+
+    # ── Build trade entry ─────────────────────────────────────────────────────
+    pos_map       = {p.symbol: p for p in positions}
+    dollar_amount = None
+    qty_traded    = 0.0
+    price         = 0.0
+
+    if action == "BUY":
+        dollar_amount = float(decision.get("dollar_amount") or 0)
+        if ticker in pos_map:
+            price      = float(pos_map[ticker].avg_entry_price)
+            qty_traded = round(dollar_amount / price, 6) if price else 0.0
+    elif action == "SELL":
+        qty_traded = float(decision.get("qty") or 0)
+        pre_pos    = portfolio.get("positions", {}).get(ticker, {})
+        pre_mv     = pre_pos.get("market_value", 0.0)
+        pre_qty    = float(pre_pos.get("qty") or qty_traded)
+        price      = round(pre_mv / pre_qty, 4) if pre_qty else 0.0
+
+    trade_entry = {
+        "timestamp":     timestamp,
+        "action":        action,
+        "ticker":        ticker,
+        "dollar_amount": round(dollar_amount, 2) if dollar_amount is not None else None,
+        "qty":           round(qty_traded, 6),
+        "price":         round(price, 4),
+        "reasoning":     decision.get("reasoning", ""),
+        "confidence":    int(decision.get("confidence") or 0),
+    }
+
+    # ── Append to historical arrays ───────────────────────────────────────────
+    data["trades"].append(trade_entry)
+    data["performance_history"].append({
+        "date":            today_str,
+        "portfolio_value": round(pv, 2),
+        "return_pct":      round((pv - STARTING_CASH) / STARTING_CASH * 100, 2),
+    })
+    data["ai_log"].append({
+        "timestamp": timestamp,
+        "message":   decision.get("reasoning", ""),
+        "tags":      [action.lower(), ticker.lower()] if ticker else [action.lower()],
+    })
+
+    # ── Recalculate top-level fields ──────────────────────────────────────────
+    data.update({
+        "portfolio_value":  round(pv, 2),
+        "starting_capital": STARTING_CASH,
+        "total_return":     round((pv - STARTING_CASH) / STARTING_CASH * 100, 2),
+        "total_trades":     len(data["trades"]),
+        "win_rate":         _compute_win_rate(data["trades"]),
+        "cash":             round(cash, 2),
+        "holdings":         holdings,
+        "last_updated":     timestamp,
+    })
+
+    # ── Write back ────────────────────────────────────────────────────────────
+    with open(_DATA_JSON_PATH, "w") as fh:
+        json.dump(data, fh, indent=2)
+
+    logger.info("Dashboard data updated: %s %s", action, ticker)
+
+
+def push_dashboard_to_github(action: str = "", ticker: str = "") -> None:
+    """
+    Commit docs/data.json and push to GitHub so Pages rebuilds.
+    Uses GITHUB_TOKEN env var for authentication.
+    Silently skips if GITHUB_TOKEN is not set.
+    Never raises — a failed push must not interrupt trading.
+    """
+    if not GITHUB_TOKEN:
+        logger.debug("GITHUB_TOKEN not set — skipping dashboard push.")
+        return
+
+    def _git(*args: str) -> subprocess.CompletedProcess:
+        return subprocess.run(
+            ["git", *args],
+            cwd=_REPO_ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+    try:
+        _git("config", "user.name",  "The Fifty Fund Agent")
+        _git("config", "user.email", "50fundagent@gmail.com")
+        _git("add", "docs/data.json")
+
+        # Skip commit + push if nothing changed
+        status = _git("status", "--porcelain", "docs/data.json")
+        if not status.stdout.strip():
+            logger.info("Dashboard push: nothing to commit.")
+            return
+
+        label     = f"{action} {ticker}".strip() or "update"
+        timestamp = datetime.now(ET_ZONE).strftime("%Y-%m-%dT%H:%M")
+        _git("commit", "-m", f"chore: dashboard update - {label} at {timestamp}")
+
+        remote = (
+            f"https://x-access-token:{GITHUB_TOKEN}"
+            "@github.com/thefiftyfund/the-fifty-fund.git"
+        )
+        _git("push", remote, "HEAD:main")
+        logger.info("Dashboard pushed to GitHub.")
+
+    except subprocess.CalledProcessError as exc:
+        logger.error(
+            "Dashboard git push failed: %s | stdout: %s | stderr: %s",
+            exc, exc.stdout, exc.stderr,
+        )
+    except Exception as exc:
+        logger.error("Dashboard push unexpected error: %s", exc)
 
 
 # ── Core Trade Cycle ──────────────────────────────────────────────────────────
