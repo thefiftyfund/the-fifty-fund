@@ -141,7 +141,7 @@ def _compute_drift(prev: dict, curr: dict) -> dict:
 
 # ── Core reconciliation (single Alpaca round-trip) ────────────────────────────
 
-def _reconcile() -> tuple[dict, object]:
+def _reconcile(cycle_id: str) -> tuple[dict, object]:
     """
     Fetch portfolio + account from Alpaca, compare against last ledger snapshot,
     log a RECONCILIATION event, and return (portfolio_dict, account_object).
@@ -168,7 +168,7 @@ def _reconcile() -> tuple[dict, object]:
 
     try:
         _ledger.log_event(
-            _ledger.generate_cycle_id(),
+            cycle_id,
             _ledger.RECONCILIATION,
             {"current": current, "drift": drift, "has_drift": has_drift},
         )
@@ -180,19 +180,19 @@ def _reconcile() -> tuple[dict, object]:
 
 # ── Public entry points ────────────────────────────────────────────────────────
 
-def get_reconciled_portfolio() -> dict:
+def get_reconciled_portfolio(cycle_id: str) -> dict:
     """Reconcile and return the portfolio dict. Never raises."""
-    portfolio, _ = _reconcile()
+    portfolio, _ = _reconcile(cycle_id)
     return portfolio
 
 
-def get_portfolio_and_account() -> tuple[dict, object]:
+def get_portfolio_and_account(cycle_id: str) -> tuple[dict, object]:
     """
     Reconcile and return (portfolio_dict, account_object) in one Alpaca
     round-trip. Use this at cycle start to avoid a redundant get_account() call.
     account_object is None when Alpaca is unavailable.
     """
-    return _reconcile()
+    return _reconcile(cycle_id)
 
 
 def get_alpaca_account():
@@ -218,7 +218,7 @@ if __name__ == "__main__":
     print("Running reconciliation self-test…")
     print("Requires ALPACA_API_KEY + ALPACA_SECRET_KEY in environment.\n")
 
-    portfolio = get_reconciled_portfolio()
+    portfolio = get_reconciled_portfolio(_ledger.generate_cycle_id())
 
     if portfolio["portfolio_value"] == 0.0 and not portfolio["positions"]:
         print("WARNING: got zero-value fallback — Alpaca credentials may be missing.")

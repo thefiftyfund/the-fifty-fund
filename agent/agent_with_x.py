@@ -150,7 +150,7 @@ def run_cycle() -> None:
 
     try:
         # ── 2. Reconcile portfolio (authoritative broker-side state) ──────────
-        reconciled, account = reconciliation.get_portfolio_and_account()
+        reconciled, account = reconciliation.get_portfolio_and_account(cycle_id)
         portfolio = _to_legacy_portfolio(reconciled)   # for Claude + dashboard compat
 
         # ── 3. Market data ────────────────────────────────────────────────────
@@ -340,7 +340,7 @@ def run_cycle() -> None:
             # Only fetch a fresh snapshot when a trade changed the portfolio.
             # For HOLD (or rejected orders) the pre-cycle snapshot is still current.
             if action in ("BUY", "SELL") and order_filled:
-                fresh = reconciliation.get_reconciled_portfolio()
+                fresh = reconciliation.get_reconciled_portfolio(cycle_id)
             else:
                 fresh = reconciled
             fresh_pv = fresh["portfolio_value"]
@@ -577,8 +577,9 @@ def start() -> None:
         portfolio   = {}
         try:
             if is_weekday:
-                market_data = agent.fetch_market_data(agent.TICKERS)
-                portfolio   = _to_legacy_portfolio(reconciliation.get_reconciled_portfolio())
+                market_data  = agent.fetch_market_data(agent.TICKERS)
+                snapshot_cid = ldr.generate_cycle_id()
+                portfolio    = _to_legacy_portfolio(reconciliation.get_reconciled_portfolio(snapshot_cid))
         except Exception as exc:
             logger.warning("Could not fetch market snapshot: %s", exc)
 
