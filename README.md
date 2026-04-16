@@ -7,7 +7,7 @@
 
 The Fifty Fund is an experiment: can an AI agent, starting with just $50, grow a real stock portfolio while documenting every single decision it makes?
 
-Every trade is posted to [@TheFiftyFund](https://x.com/TheFiftyFund) on X with full reasoning.
+Every trade is posted to [@TheFund7222](https://x.com/TheFund7222) on X with full reasoning.
 Every week a performance review is published on Substack.
 Every milestone gets its own post.
 
@@ -43,7 +43,7 @@ AAPL · NVDA · MSFT · AMZN · META · TSLA · GOOGL · SPY · QQQ
 
 ## Follow the Journey
 
-- 🐦 X: [@TheFiftyFund](https://x.com/TheFiftyFund)
+- 🐦 X: [@TheFund7222](https://x.com/TheFund7222)
 - 📧 Substack: [thefiftyfund.substack.com](https://thefiftyfund.substack.com)
 
 ## Disclaimer
