@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+drafts/
+milestones_hit.json
+substack_milestones.json
