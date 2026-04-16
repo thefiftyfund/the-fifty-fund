@@ -49,10 +49,22 @@ claude = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 def _get_substack_session() -> requests.Session:
     """Return a requests.Session authenticated with the Substack session cookie."""
     session = requests.Session()
-    session.cookies.set("substack.sid", SUBSTACK_SID, domain="substack.com")
+    session.cookies.set("substack.sid", SUBSTACK_SID, domain=".substack.com")
     session.headers.update({
-        "Content-Type": "application/json",
-        "User-Agent": "TheFiftyFund/1.0",
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'application/json, text/plain, */*',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Referer': 'https://substack.com/',
+        'Origin': 'https://substack.com',
+        'Connection': 'keep-alive',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'Content-Type': 'application/json',
     })
     return session
 
