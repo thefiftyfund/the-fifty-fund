@@ -5,3 +5,5 @@ __pycache__/
 drafts/
 milestones_hit.json
 substack_milestones.json
+test_connections.py
+backfill_dashboard.py
