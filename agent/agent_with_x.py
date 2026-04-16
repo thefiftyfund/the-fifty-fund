@@ -47,6 +47,7 @@ from dotenv import load_dotenv
 # ── Internal modules ──────────────────────────────────────────────────────────
 import algomind_agent as agent
 from algomind_agent import append_ai_log
+import daily_log_generator
 import ledger         as ldr
 import reconciliation
 import risk_engine
@@ -75,6 +76,7 @@ _state = {
     "weekly_recap_posted":      set(),   # set of dates (Friday dates)
     "monthly_deep_dive_posted": set(),   # set of (year, month) tuples
     "daily_summary_sent":       set(),   # set of dates
+    "daily_log_generated":      set(),   # set of dates
     "trades_this_week":         [],      # list of decision dicts since Monday
     "first_trade_done":         False,   # True after first ever execution
 }
@@ -463,6 +465,16 @@ def _handle_eod(portfolio: dict) -> None:
         except Exception as exc:
             ldr.log_event(cid, ldr.ERROR, {"message": f"Daily summary failed: {exc}"})
             logger.error("Daily summary failed: %s", exc)
+
+    # Daily build log (after all other EOD work is done)
+    if today not in _state["daily_log_generated"]:
+        try:
+            written = daily_log_generator.generate_daily_logs(include_today=True)
+            _state["daily_log_generated"].add(today)
+            if written:
+                logger.info("Daily build log(s) generated: %s", [d.isoformat() for d in written])
+        except Exception as exc:
+            logger.error("Daily log generation failed: %s", exc)
 
     # Friday: weekly recap tweet + Substack review
     if now_et.weekday() == 4 and today not in _state["weekly_recap_posted"]:
