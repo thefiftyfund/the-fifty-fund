@@ -38,6 +38,7 @@ import json
 import logging
 import os
 import time
+import urllib.request
 from datetime import datetime, date, timezone
 from pathlib import Path
 
@@ -434,11 +435,22 @@ def _handle_morning_outlook(market_data: dict) -> None:
         ldr.log_event(cid, ldr.ERROR, {"message": f"Morning outlook failed: {exc}"})
         logger.error("Morning outlook post failed: %s", exc)
         return
-    # Persist so redeploys don't re-post the outlook today
+    # Persist so redeploys don't re-post the outlook today (filesystem)
     try:
         agent._update_agent_state("last_outlook_date", today.isoformat())
     except Exception:
         pass
+    # Also write last_outlook_date into docs/data.json and push to GitHub —
+    # authoritative source of truth across Railway redeploys.
+    try:
+        with open(agent._DATA_JSON_PATH) as fh:
+            _data = json.load(fh)
+        _data["last_outlook_date"] = today.isoformat()
+        with open(agent._DATA_JSON_PATH, "w") as fh:
+            json.dump(_data, fh, indent=2)
+        agent.push_dashboard_to_github("morning-outlook", "")
+    except Exception as exc:
+        logger.warning("Could not persist last_outlook_date to GitHub: %s", exc)
 
 
 def _handle_eod(portfolio: dict) -> None:
@@ -578,6 +590,26 @@ def start() -> None:
             )
         except Exception as exc:
             logger.warning("Could not parse last_outlook_date: %s", exc)
+
+    # ── GitHub fallback: read last_outlook_date from docs/data.json ───────────
+    # Railway's filesystem is ephemeral; data/state.json may be gone after a
+    # redeploy. docs/data.json on GitHub is the authoritative record.
+    try:
+        url = (
+            "https://raw.githubusercontent.com/thefiftyfund/the-fifty-fund"
+            "/main/docs/data.json"
+        )
+        with urllib.request.urlopen(url, timeout=5) as r:
+            remote = json.loads(r.read())
+        outlook_date = remote.get("last_outlook_date")
+        if outlook_date:
+            _state["morning_outlook_posted"].add(date.fromisoformat(outlook_date))
+            logger.info(
+                "Startup (GitHub): morning outlook already posted %s — skipping.",
+                outlook_date,
+            )
+    except Exception as exc:
+        logger.warning("Could not fetch remote data.json: %s", exc)
 
     # ── Main loop ─────────────────────────────────────────────────────────────
     while True:

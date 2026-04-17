@@ -50,6 +50,13 @@
 | `agent/substack_engine.py` | Substack automation via session cookie (`SUBSTACK_SID`) | ✅ Complete |
 | `docs/progress.md` | Progress tracker updated | ✅ Complete |
 
+### Infrastructure Fix: morning outlook duplicate tweet prevention
+- Fixed duplicate morning outlook tweets after Railway redeploys.
+- Root cause: Railway filesystem is ephemeral — `data/state.json` is wiped on redeploy, so `last_outlook_date` was lost and the outlook was re-posted.
+- Fix: `_handle_morning_outlook()` now writes `last_outlook_date` into `docs/data.json` and immediately calls `push_dashboard_to_github("morning-outlook", "")` to persist it to GitHub.
+- On startup, `start()` fetches `docs/data.json` from the GitHub raw URL and seeds `_state["morning_outlook_posted"]` from `last_outlook_date` before the main loop begins.
+- Belt-and-suspenders: `data/state.json` write still kept as local cache; GitHub is the authoritative source.
+
 ### Infrastructure Fix: data/ directory
 - Fixed missing `data/` directory — `state.json` now persists across Railway redeploys, duplicate tweet prevention restored.
 - Added `data/.gitkeep` to git so Railway always has the `data/` dir after every deploy.
