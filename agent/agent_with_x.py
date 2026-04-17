@@ -440,17 +440,15 @@ def _handle_morning_outlook(market_data: dict) -> None:
         agent._update_agent_state("last_outlook_date", today.isoformat())
     except Exception:
         pass
-    # Also write last_outlook_date into docs/data.json and push to GitHub —
-    # authoritative source of truth across Railway redeploys.
+    # Write last_outlook_date into docs/data.json locally (no push — only trades trigger a push).
     try:
         with open(agent._DATA_JSON_PATH) as fh:
             _data = json.load(fh)
         _data["last_outlook_date"] = today.isoformat()
         with open(agent._DATA_JSON_PATH, "w") as fh:
             json.dump(_data, fh, indent=2)
-        agent.push_dashboard_to_github("morning-outlook", "")
     except Exception as exc:
-        logger.warning("Could not persist last_outlook_date to GitHub: %s", exc)
+        logger.warning("Could not persist last_outlook_date to data.json: %s", exc)
 
 
 def _handle_eod(portfolio: dict) -> None:

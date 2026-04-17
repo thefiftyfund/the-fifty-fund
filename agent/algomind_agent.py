@@ -648,7 +648,6 @@ def append_ai_log(message: str, tags: list) -> None:
         })
         with open(_DATA_JSON_PATH, "w") as fh:
             json.dump(data, fh, indent=2)
-        _dashboard_dirty = True
     except Exception as exc:
         logger.warning("append_ai_log failed (non-fatal): %s", exc)
 
