@@ -344,6 +344,23 @@ The ledger is operational data, not source code. Committing it would add noise t
 
 ---
 
+## April 20, 2026 — Feature-a-Day: Day 1
+
+### Countdown Timer Widget
+
+| File | Description | Status |
+|------|-------------|--------|
+| `docs/index.html` | Countdown timer bar between nav and main content | ✅ Shipped |
+
+**What it does:**
+- Shows "⏱️ NEXT TRADE CYCLE — Next cycle in MM:SS" counting down to the next 30-min cycle (aligned to 9:30 AM ET)
+- During market hours (9:30 AM–4:00 PM ET, Mon–Fri): live countdown
+- Outside market hours or weekends: "Market Closed — Next session: [day] 9:30 AM ET"
+- Under 60 seconds remaining: green glow-pulse animation kicks in
+- Pure vanilla JS, no dependencies; matches the existing terminal green aesthetic
+
+---
+
 ## Upcoming Sessions
 
 ### Session 2 (planned)
