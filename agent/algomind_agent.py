@@ -35,6 +35,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+import db as _db
+
 # ── Logging ──────────────────────────────────────────────────────────────────
 
 logging.basicConfig(
@@ -554,6 +556,23 @@ def update_dashboard_data(
     _dashboard_dirty = True
     logger.info("Dashboard data updated: %s %s", action, ticker)
 
+    # Write to Postgres
+    try:
+        _db.insert_trade(
+            cycle_id=None,
+            action=action,
+            ticker=ticker,
+            dollar_amount=trade_entry.get("dollar_amount"),
+            qty=trade_entry.get("qty"),
+            price=trade_entry.get("price"),
+            reasoning=trade_entry.get("reasoning"),
+            confidence=trade_entry.get("confidence"),
+            x_post=x_post_text,
+        )
+        _db.upsert_performance(today_str, round(pv, 2), round((pv - STARTING_CASH) / STARTING_CASH * 100, 2))
+    except Exception as _exc:
+        logger.warning("DB write failed (non-fatal): %s", _exc)
+
 
 def push_dashboard_to_github(action: str = "", ticker: str = "") -> None:
     """
@@ -652,6 +671,10 @@ def append_ai_log(message: str, tags: list) -> None:
         })
         with open(_DATA_JSON_PATH, "w") as fh:
             json.dump(data, fh, indent=2)
+        try:
+            _db.insert_ai_log(message, tags)
+        except Exception:
+            pass
     except Exception as exc:
         logger.warning("append_ai_log failed (non-fatal): %s", exc)
 
