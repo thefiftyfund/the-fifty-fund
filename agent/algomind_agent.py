@@ -543,6 +543,7 @@ def update_dashboard_data(
         "cash":             round(cash, 2),
         "holdings":         holdings,
         "last_updated":     timestamp,
+        "last_cycle_utc":   timestamp,
     })
 
     # ── Write back ────────────────────────────────────────────────────────────

@@ -606,6 +606,16 @@ def start() -> None:
                 "Startup (GitHub): morning outlook already posted %s — skipping.",
                 outlook_date,
             )
+        last_cycle_utc = remote.get("last_cycle_utc")
+        if last_cycle_utc and _state["last_cycle_dt"] is None:
+            try:
+                last_dt = datetime.fromisoformat(last_cycle_utc)
+                if last_dt.tzinfo is None:
+                    last_dt = ET_ZONE.localize(last_dt)
+                _state["last_cycle_dt"] = last_dt
+                logger.info("Startup (GitHub): last cycle was %s — restart guard active.", last_dt)
+            except Exception as exc:
+                logger.warning("Could not parse last_cycle_utc from GitHub: %s", exc)
     except Exception as exc:
         logger.warning("Could not fetch remote data.json: %s", exc)
 
