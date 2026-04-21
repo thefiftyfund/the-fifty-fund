@@ -2,19 +2,28 @@
   "portfolio_value": 50.2,
   "starting_capital": 50.0,
   "total_return": 0.4,
-  "total_trades": 3,
+  "total_trades": 4,
   "win_rate": 100.0,
   "start_date": "2026-04-16",
-  "cash": 35.19,
+  "cash": 20.19,
   "holdings": [
+    {
+      "ticker": "AAPL",
+      "qty": 0.056318,
+      "avg_cost": 266.344,
+      "current_price": 266.36,
+      "market_value": 15.0,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.01
+    },
     {
       "ticker": "TSLA",
       "qty": 0.038668,
       "avg_cost": 387.914,
-      "current_price": 388.16,
+      "current_price": 388.19,
       "market_value": 15.01,
       "unrealized_pl": 0.01,
-      "unrealized_pl_pct": 0.06
+      "unrealized_pl_pct": 0.07
     }
   ],
   "trades": [
@@ -49,6 +58,17 @@
       "reasoning": "AAPL shows a clear sell signal with RSI at 63.9 (above 60 threshold) combined with significant downward momentum of -2.39% on high volume of 27.1M shares. This confirms bearish sentiment and validates taking profits on our positive position before further decline. Will redeploy capital into oversold opportunities.",
       "confidence": 8,
       "x_post": "[AlgoMind | 13:46 ET] SELL AAPL \ud83d\udd34\n\nAAPL shows a clear sell signal with RSI at 63.9 (above 60 threshold) combined with significant downward momentum of -2.39% on high volume of 27.1M shares. This...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-04-21T13:47:00.212937-04:00",
+      "action": "BUY",
+      "ticker": "AAPL",
+      "dollar_amount": 15.0,
+      "qty": 0.056318,
+      "price": 266.344,
+      "reasoning": "AAPL shows a strong buy signal with RSI at 63.9 (just above oversold territory) combined with a -2.39% price decline on high volume of 27M shares. This creates an excellent momentum entry point as the stock appears to be finding support after the selloff. AAPL is historically resilient and this dip represents a quality buying opportunity. The high volume confirms institutional participation in the move, making this a high-conviction trade for long-term growth.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 13:47 ET] BUY AAPL \ud83d\udfe2\n\nAAPL shows a strong buy signal with RSI at 63.9 (just above oversold territory) combined with a -2.39% price decline on high volume of 27M shares. This creates an...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -61,6 +81,11 @@
       "date": "2026-04-16",
       "portfolio_value": 50.08,
       "return_pct": 0.16
+    },
+    {
+      "date": "2026-04-21",
+      "portfolio_value": 50.2,
+      "return_pct": 0.4
     },
     {
       "date": "2026-04-21",
@@ -751,9 +776,40 @@
         "sell",
         "aapl"
       ]
+    },
+    {
+      "timestamp": "2026-04-21T13:46:53.277780-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Tuesday, Apr 21\nTop mover: AAPL -2.39% (RSI 64)\nOverbought (RSI>70): NVDA, MSFT, AM",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:47:00.061610-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:47:00.212345-04:00",
+      "message": "Trade posted to X: [AlgoMind | 13:47 ET] BUY AAPL \ud83d\udfe2\n\nAAPL shows a strong buy signal with RSI at 63.9 (just above overso",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:47:00.212937-04:00",
+      "message": "AAPL shows a strong buy signal with RSI at 63.9 (just above oversold territory) combined with a -2.39% price decline on high volume of 27M shares. This creates an excellent momentum entry point as the stock appears to be finding support after the selloff. AAPL is historically resilient and this dip represents a quality buying opportunity. The high volume confirms institutional participation in the move, making this a high-conviction trade for long-term growth.",
+      "tags": [
+        "buy",
+        "aapl"
+      ]
     }
   ],
-  "last_updated": "2026-04-21T13:46:15.587468-04:00",
+  "last_updated": "2026-04-21T13:47:00.212937-04:00",
   "last_outlook_date": "2026-04-21",
   "milestones_hit": {
     "first_trade": true,
