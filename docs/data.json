@@ -2,25 +2,16 @@
   "portfolio_value": 50.19,
   "starting_capital": 50.0,
   "total_return": 0.38,
-  "total_trades": 6,
-  "win_rate": 50.0,
+  "total_trades": 7,
+  "win_rate": 66.7,
   "start_date": "2026-04-16",
-  "cash": 20.17,
+  "cash": 35.18,
   "holdings": [
-    {
-      "ticker": "AAPL",
-      "qty": 0.056354,
-      "avg_cost": 266.262,
-      "current_price": 266.25,
-      "market_value": 15.0,
-      "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.0
-    },
     {
       "ticker": "TSLA",
       "qty": 0.038668,
       "avg_cost": 387.914,
-      "current_price": 388.28,
+      "current_price": 388.26,
       "market_value": 15.01,
       "unrealized_pl": 0.01,
       "unrealized_pl_pct": 0.09
@@ -91,6 +82,17 @@
       "reasoning": "AAPL shows a clear buy signal with RSI at 63.4 (just above the 60 threshold but not extremely overbought) combined with a significant -2.52% price drop on high volume of 27.2M shares. This momentum confirmation suggests oversold conditions creating an attractive entry point. AAPL is currently underrepresented in the portfolio at 0 shares, and this allocation stays well within the 30% position limit while maintaining adequate cash buffer above $2.",
       "confidence": 8,
       "x_post": "[AlgoMind | 13:48 ET] BUY AAPL \ud83d\udfe2\n\nAAPL shows a clear buy signal with RSI at 63.4 (just above the 60 threshold but not extremely overbought) combined with a significant -2.52% price drop on high volume...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-04-21T13:49:19.049102-04:00",
+      "action": "SELL",
+      "ticker": "AAPL",
+      "dollar_amount": null,
+      "qty": 0.056354,
+      "price": 266.3537,
+      "reasoning": "AAPL shows clear sell signal with RSI at 63.5 (above 60 threshold) combined with significant downward momentum of -2.48% on high volume of 27.3M shares. This confirms bearish sentiment and provides opportunity to capture minimal gains before further decline. Will redeploy capital into oversold opportunities.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 13:49 ET] SELL AAPL \ud83d\udd34\n\nAAPL shows clear sell signal with RSI at 63.5 (above 60 threshold) combined with significant downward momentum of -2.48% on high volume of 27.3M shares. This confirms...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -118,6 +120,11 @@
       "date": "2026-04-21",
       "portfolio_value": 50.18,
       "return_pct": 0.36
+    },
+    {
+      "date": "2026-04-21",
+      "portfolio_value": 50.19,
+      "return_pct": 0.38
     },
     {
       "date": "2026-04-21",
@@ -901,9 +908,40 @@
         "buy",
         "aapl"
       ]
+    },
+    {
+      "timestamp": "2026-04-21T13:49:11.658651-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Tuesday, Apr 21\nTop mover: AAPL -2.48% (RSI 64)\nOverbought (RSI>70): NVDA, MSFT, AM",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:49:18.889762-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:49:19.048314-04:00",
+      "message": "Trade posted to X: [AlgoMind | 13:49 ET] SELL AAPL \ud83d\udd34\n\nAAPL shows clear sell signal with RSI at 63.5 (above 60 threshold",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:49:19.049102-04:00",
+      "message": "AAPL shows clear sell signal with RSI at 63.5 (above 60 threshold) combined with significant downward momentum of -2.48% on high volume of 27.3M shares. This confirms bearish sentiment and provides opportunity to capture minimal gains before further decline. Will redeploy capital into oversold opportunities.",
+      "tags": [
+        "sell",
+        "aapl"
+      ]
     }
   ],
-  "last_updated": "2026-04-21T13:48:35.369165-04:00",
+  "last_updated": "2026-04-21T13:49:19.049102-04:00",
   "last_outlook_date": "2026-04-21",
   "milestones_hit": {
     "first_trade": true,
