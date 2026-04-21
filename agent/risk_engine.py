@@ -144,10 +144,8 @@ def _rule_position_exists(decision: dict, portfolio: dict) -> tuple[bool, str]:
     if sell_qty <= 0:
         return False, f"POSITION_EXISTS: sell qty must be > 0 (got {sell_qty})"
     if sell_qty > held_qty:
-        return False, (
-            f"POSITION_EXISTS: sell qty {sell_qty:.6f} exceeds "
-            f"held {held_qty:.6f} {ticker}"
-        )
+        decision["qty"] = held_qty
+        sell_qty = held_qty
     return True, "ok"
 
 
