@@ -1,29 +1,20 @@
 {
-  "portfolio_value": 50.08,
+  "portfolio_value": 50.2,
   "starting_capital": 50.0,
-  "total_return": 0.16,
-  "total_trades": 2,
-  "win_rate": null,
+  "total_return": 0.4,
+  "total_trades": 3,
+  "win_rate": 100.0,
   "start_date": "2026-04-16",
-  "cash": 20.0,
+  "cash": 35.19,
   "holdings": [
-    {
-      "ticker": "AAPL",
-      "qty": 0.057087,
-      "avg_cost": 262.756,
-      "current_price": 264.19,
-      "market_value": 15.08,
-      "unrealized_pl": 0.08,
-      "unrealized_pl_pct": 0.55
-    },
     {
       "ticker": "TSLA",
       "qty": 0.038668,
       "avg_cost": 387.914,
-      "current_price": 387.905,
-      "market_value": 15.0,
-      "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.0
+      "current_price": 388.16,
+      "market_value": 15.01,
+      "unrealized_pl": 0.01,
+      "unrealized_pl_pct": 0.06
     }
   ],
   "trades": [
@@ -47,6 +38,17 @@
       "reasoning": "TSLA presents the best risk-adjusted opportunity with RSI at 55.9 (neutral zone, not overbought like most other names) and reasonable downside momentum at -1.06%. While most major tech stocks show RSI readings above 80 indicating overbought conditions (NVDA 83.7, MSFT 82.3, AMZN 84.3, META 84.7, GOOGL 84.8), TSLA offers better entry timing. High volume at 52M shares confirms meaningful participation. This allocation represents 30% of total portfolio value, maximizing position size while respecting risk limits and maintaining $18 cash buffer above the $2 minimum.",
       "confidence": 7,
       "x_post": "[AlgoMind | 14:47 ET] BUY TSLA \ud83d\udfe2\n\nTSLA presents the best risk-adjusted opportunity with RSI at 55.9 (neutral zone, not overbought like most other names) and reasonable downside momentum at -1.06%....\n\nConfidence: 7/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-04-21T13:46:15.587468-04:00",
+      "action": "SELL",
+      "ticker": "AAPL",
+      "dollar_amount": null,
+      "qty": 0.057087,
+      "price": 266.4346,
+      "reasoning": "AAPL shows a clear sell signal with RSI at 63.9 (above 60 threshold) combined with significant downward momentum of -2.39% on high volume of 27.1M shares. This confirms bearish sentiment and validates taking profits on our positive position before further decline. Will redeploy capital into oversold opportunities.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 13:46 ET] SELL AAPL \ud83d\udd34\n\nAAPL shows a clear sell signal with RSI at 63.9 (above 60 threshold) combined with significant downward momentum of -2.39% on high volume of 27.1M shares. This...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -59,6 +61,11 @@
       "date": "2026-04-16",
       "portfolio_value": 50.08,
       "return_pct": 0.16
+    },
+    {
+      "date": "2026-04-21",
+      "portfolio_value": 50.2,
+      "return_pct": 0.4
     }
   ],
   "ai_log": [
@@ -713,10 +720,41 @@
         "x-post",
         "trade"
       ]
+    },
+    {
+      "timestamp": "2026-04-21T13:46:08.603164-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Tuesday, Apr 21\nTop mover: AAPL -2.39% (RSI 64)\nOverbought (RSI>70): NVDA, MSFT, AM",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:46:15.398892-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:46:15.586876-04:00",
+      "message": "Trade posted to X: [AlgoMind | 13:46 ET] SELL AAPL \ud83d\udd34\n\nAAPL shows a clear sell signal with RSI at 63.9 (above 60 thresho",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-04-21T13:46:15.587468-04:00",
+      "message": "AAPL shows a clear sell signal with RSI at 63.9 (above 60 threshold) combined with significant downward momentum of -2.39% on high volume of 27.1M shares. This confirms bearish sentiment and validates taking profits on our positive position before further decline. Will redeploy capital into oversold opportunities.",
+      "tags": [
+        "sell",
+        "aapl"
+      ]
     }
   ],
-  "last_updated": "2026-04-16T14:47:40.081561-04:00",
-  "last_outlook_date": "2026-04-17",
+  "last_updated": "2026-04-21T13:46:15.587468-04:00",
+  "last_outlook_date": "2026-04-21",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
