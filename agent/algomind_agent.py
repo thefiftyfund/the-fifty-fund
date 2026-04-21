@@ -256,13 +256,13 @@ MARKET SNAPSHOT  (30-day data, RSI-14, 1-day change)
 {chr(10).join(market_lines)}
 
 DECISION RULES
-- Use RSI as a primary signal: RSI < 30 = oversold/possible buy, RSI > 70 = overbought/possible sell.
-- Combine with price momentum (change_pct) and volume for conviction.
+- RSI < 40 = buy signal. RSI > 60 = sell signal. One clear signal is enough to act.
+- Any price move > 0.5% with volume confirms momentum — trade it.
 - Never allocate more than {int(MAX_POSITION_PCT * 100)}% of total portfolio value to a single ticker.
 - Always maintain at least ${CASH_BUFFER:.2f} cash buffer.
-- If no strong signal exists, HOLD is the correct answer.
-- Prefer quality signals over frequent trading.
-
+- You MUST make 1-2 trades per day minimum. HOLDing all day = failing your mandate.
+- Sell losing positions down > 2% from entry. Cut losses fast.
+- This is a real $50 portfolio — be aggressive but disciplined.
 Respond ONLY with valid JSON — no markdown fences, no extra text outside the JSON object.
 
 REQUIRED RESPONSE FORMAT
@@ -275,6 +275,9 @@ REQUIRED RESPONSE FORMAT
   "confidence": <integer 1–10>,
   "market_summary": "<one sentence on overall market conditions today>"
 }}"""
+
+   max_usd = round(portfolio['portfolio_value'] * MAX_POSITION_PCT, 2)
+    prompt += f"\n\nMax dollar_amount allowed for any single BUY: ${max_usd:.2f}"
 
     response = claude.messages.create(
         model=CLAUDE_MODEL,
