@@ -771,9 +771,9 @@
   <div class="tab-content active" id="tab-performance">
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-label">Portfolio Value</div>
+        <div class="stat-label">Portfolio Value <span id="livePortfolioBadge" style="display:none;padding:1px 5px;background:rgba(0,255,65,0.1);border:1px solid rgba(0,255,65,0.25);border-radius:3px;font-size:9px;letter-spacing:1.5px;color:var(--green);vertical-align:middle;">● LIVE</span></div>
         <div class="stat-value" id="portfolioValue">$50.00</div>
-        <div class="stat-sub">Starting Capital: $50.00</div>
+        <div class="stat-sub">Cash: <span id="cashDisplay">--</span> &nbsp;·&nbsp; BP: <span id="buyingPowerDisplay">--</span></div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Total Return</div>
@@ -831,7 +831,7 @@
   <div class="tab-content" id="tab-holdings">
     <div class="chart-container">
       <div class="chart-header">
-        <div class="chart-title">Current Positions</div>
+        <div class="chart-title">Current Positions <span id="holdingsLiveBadge" style="display:none;padding:1px 5px;background:rgba(0,255,65,0.1);border:1px solid rgba(0,255,65,0.25);border-radius:3px;font-size:9px;letter-spacing:1.5px;color:var(--green);vertical-align:middle;">● LIVE</span></div>
       </div>
       <table class="data-table">
         <thead>
@@ -1139,31 +1139,36 @@
 
   async function loadData() {
     const [live, sd] = await Promise.all([loadLivePortfolio(), loadStaticData()]);
-    const data = Object.assign({}, sd || {}, {
-      portfolio_value: live?.portfolio_value ?? sd?.portfolio_value ?? 50,
-      cash:            live?.cash            ?? sd?.cash            ?? 50,
-      total_return:    live?.total_return    ?? sd?.total_return    ?? 0,
-      holdings:        live?.holdings        ?? sd?.holdings        ?? [],
-      last_updated:    live?.last_updated    ?? sd?.last_updated,
-    });
+    const hasLive    = live !== null;
+    const portfolioValue = live?.portfolio_value ?? sd?.portfolio_value ?? 50;
+    const cash           = live?.cash            ?? sd?.cash            ?? 50;
+    const buyingPower    = live?.buying_power    ?? null;
+    const lastUpdated    = live?.last_updated    ?? sd?.last_updated;
+    const totalReturn    = sd?.total_return ?? 0;
+    const positions      = live?.positions ?? sd?.holdings ?? [];
+
+    document.getElementById('livePortfolioBadge').style.display = hasLive ? 'inline-block' : 'none';
+    document.getElementById('holdingsLiveBadge').style.display  = hasLive ? 'inline-block' : 'none';
 
     // 1. TOP STATS
-    document.getElementById('portfolioValue').textContent = '$' + (data.portfolio_value||0).toFixed(2);
+    document.getElementById('portfolioValue').textContent = '$' + portfolioValue.toFixed(2);
+    document.getElementById('cashDisplay').textContent = '$' + cash.toFixed(2);
+    document.getElementById('buyingPowerDisplay').textContent = buyingPower != null ? '$' + buyingPower.toFixed(2) : '--';
     const retEl = document.getElementById('totalReturn');
-    const ret = data.total_return||0;
+    const ret = totalReturn;
     retEl.textContent = (ret>=0?'+':'')+ret.toFixed(2)+'%';
     retEl.className = 'stat-value'+(ret<0?' negative':'');
-    const pnlD = (data.portfolio_value||0)-50;
+    const pnlD = portfolioValue - 50;
     document.getElementById('returnDollar').textContent = (pnlD>=0?'+':'')+'$'+Math.abs(pnlD).toFixed(2);
-    document.getElementById('totalTrades').textContent = data.total_trades||0;
-    document.getElementById('totalTrades').nextElementSibling.textContent = 'Win Rate: '+((data.win_rate!=null)?data.win_rate.toFixed(0)+'%':'--');
+    document.getElementById('totalTrades').textContent = sd?.total_trades ?? 0;
+    document.getElementById('totalTrades').nextElementSibling.textContent = 'Win Rate: '+((sd?.win_rate!=null)?sd.win_rate.toFixed(0)+'%':'--');
     const dayNum = Math.floor((Date.now()-new Date('2026-04-15').getTime())/86400000)+1;
     document.getElementById('uptimeDays').textContent = 'DAY '+dayNum;
     document.getElementById('startDate').textContent = 'Since Apr 15, 2026';
 
     // 2. TRADE JOURNAL
     const tradeBody = document.getElementById('tradeBody');
-    const trades = data.trades||[];
+    const trades = sd?.trades||[];
     if(!trades.length){
       tradeBody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--text-dim);padding:40px;">No trades yet</td></tr>';
     } else {
@@ -1183,20 +1188,26 @@
       }).join('');
     }
 
-    // 3. HOLDINGS
+    // 3. HOLDINGS (live from Vercel API `positions`; falls back to data.json `holdings`)
     const holdingsBody=document.getElementById('holdingsBody');
-    const holdings=data.holdings||[];
-    const pv=data.portfolio_value||50;
-    const cash=data.cash||0;
-    if(!holdings.length){
+    const pv=portfolioValue;
+    if(!positions.length){
       holdingsBody.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:40px;">Cash: $${cash.toFixed(2)} — No open positions</td></tr>`;
     } else {
-      const rows=holdings.map(h=>{
-        const plc=h.unrealized_pl>=0?'positive':'negative';
-        const pls=h.unrealized_pl>=0?'+':'';
-        const pcts=h.unrealized_pl_pct>=0?'+':'';
-        const wt=pv>0?(h.market_value/pv*100).toFixed(1)+'%':'--';
-        return `<tr><td style="font-weight:600;color:var(--green)">${h.ticker}</td><td>${(+h.qty).toFixed(4)}</td><td>$${(+h.avg_cost).toFixed(2)}</td><td>$${(+h.current_price).toFixed(2)}</td><td class="${plc}">${pls}$${(+h.unrealized_pl).toFixed(2)} (${pcts}${(+h.unrealized_pl_pct).toFixed(2)}%)</td><td style="color:var(--text-dim)">${wt}</td></tr>`;
+      const rows=positions.map(h=>{
+        const ticker  = h.symbol || h.ticker || '--';
+        const qty     = +(h.qty || 0);
+        const avgCost = +(h.avg_entry_price ?? h.avg_cost ?? 0);
+        const price   = +(h.current_price ?? 0);
+        const mv      = +(h.market_value ?? qty * price);
+        const upl     = +(h.unrealized_pl ?? 0);
+        const costBasis = avgCost * qty;
+        const uplPct  = costBasis > 0 ? upl / costBasis * 100 : 0;
+        const wt      = pv > 0 ? (mv / pv * 100).toFixed(1)+'%' : '--';
+        const plc     = upl >= 0 ? 'positive' : 'negative';
+        const pls     = upl >= 0 ? '+' : '';
+        const pcts    = uplPct >= 0 ? '+' : '';
+        return `<tr><td style="font-weight:600;color:var(--green)">${ticker}</td><td>${qty.toFixed(4)}</td><td>$${avgCost.toFixed(2)}</td><td>$${price.toFixed(2)}</td><td class="${plc}">${pls}$${upl.toFixed(2)} (${pcts}${uplPct.toFixed(2)}%)</td><td style="color:var(--text-dim)">${wt}</td></tr>`;
       });
       const cw=pv>0?(cash/pv*100).toFixed(1)+'%':'--';
       rows.push(`<tr style="border-top:1px solid var(--border-green)"><td style="color:var(--text-dim)">CASH</td><td>--</td><td>--</td><td>--</td><td>--</td><td style="color:var(--text-dim)">$${cash.toFixed(2)} (${cw})</td></tr>`);
@@ -1205,7 +1216,7 @@
 
     // 4. AI LOG
     const logContainer=document.getElementById('logContainer');
-    const logs=data.ai_log||[];
+    const logs=sd?.ai_log||[];
     if(!logs.length){
       logContainer.innerHTML='<div class="log-entry"><div class="log-timestamp">SYSTEM INIT</div><div class="log-message">Agent initializing.</div><span class="log-tag">boot</span></div>';
     } else {
@@ -1220,7 +1231,7 @@
     // 5. CHART
     const svg=document.getElementById('perfChart');
     const chartMsg=svg.nextElementSibling;
-    const history=data.performance_history||[];
+    const history=sd?.performance_history||[];
     if(!history.length){ chartMsg.style.display=''; }
     else if(history.length===1){
       chartMsg.style.display='none';
@@ -1242,8 +1253,8 @@
     }
 
     // 6. LAST UPDATED
-    if(data.last_updated){
-      const lu=new Date(data.last_updated);
+    if(lastUpdated){
+      const lu=new Date(lastUpdated);
       const lus=lu.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' '+lu.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/New_York'})+' ET';
       const fp=document.querySelector('.footer p');
       if(fp) fp.innerHTML='THE FIFTY FUND &mdash; AUTONOMOUS AI TRADING AGENT &nbsp;|&nbsp; <span style="color:var(--text-dim)">Live via Alpaca | Updated: '+lus+'</span>';
