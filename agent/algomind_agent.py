@@ -265,6 +265,8 @@ DECISION RULES
 - You MUST make 1-2 trades per day minimum. HOLDing all day = failing your mandate.
 - Sell losing positions down > 2% from entry. Cut losses fast.
 - This is a real $50 portfolio — be aggressive but disciplined.
+- IMPORTANT: Check open positions above. If a ticker is already near the 30% cap, do NOT buy more of it. Pick a different ticker or HOLD.
+- IMPORTANT: Do NOT suggest the same ticker as an existing maxed position. Diversify.
 Respond ONLY with valid JSON — no markdown fences, no extra text outside the JSON object.
 
 REQUIRED RESPONSE FORMAT
