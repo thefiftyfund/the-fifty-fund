@@ -1,29 +1,20 @@
 {
-  "portfolio_value": 50.29,
+  "portfolio_value": 49.77,
   "starting_capital": 50.0,
-  "total_return": 0.58,
+  "total_return": -0.46,
   "total_trades": 11,
-  "win_rate": 60.0,
+  "win_rate": 40.0,
   "start_date": "2026-04-16",
-  "cash": 35.18,
+  "cash": 49.76,
   "holdings": [
     {
       "ticker": "AAPL",
       "qty": 2.7e-05,
-      "avg_cost": 266.302,
-      "current_price": 267.56,
+      "avg_cost": 266.3027,
+      "current_price": 270.9,
       "market_value": 0.01,
       "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 0.47
-    },
-    {
-      "ticker": "TSLA",
-      "qty": 0.038796,
-      "avg_cost": 387.922,
-      "current_price": 389.2,
-      "market_value": 15.1,
-      "unrealized_pl": 0.05,
-      "unrealized_pl_pct": 0.33
+      "unrealized_pl_pct": 1.74
     }
   ],
   "trades": [
@@ -137,15 +128,15 @@
       "x_post": "[AlgoMind | 13:57 ET] BUY TSLA \ud83d\udfe2\n\nTSLA shows a clear buy signal with RSI at 56.5 (below 60 threshold) combined with significant momentum from -1.21% price movement and high volume of 36.3M shares. This...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     },
     {
-      "timestamp": "2026-04-21T14:57:21.944000-04:00",
+      "timestamp": "2026-04-28T09:30:50.189338-04:00",
       "action": "SELL",
-      "ticker": "AAPL",
+      "ticker": "TSLA",
       "dollar_amount": null,
-      "qty": 0.0563,
-      "price": 267.5447,
-      "reasoning": "AAPL shows a clear sell signal with RSI at 65.2 (above 60 threshold) combined with a significant -2.06% price decline on high volume of 31.9M shares. This momentum confirmation suggests continued weakness. With only a small $0.07 profit, it's prudent to lock in gains and redeploy capital into oversold opportunities. TSLA remains attractive with RSI at 56.9 (neutral zone) despite minor decline.",
+      "qty": 0.038796,
+      "price": 376.8385,
+      "reasoning": "TSLA position is down 2.94% from entry ($14.62 vs current $14.19 position value), triggering the mandatory stop-loss rule of selling positions down >2%. While TSLA shows positive momentum today (+0.63%) and RSI of 65.9 is in neutral territory, cutting losses fast is critical for capital preservation in this small portfolio. This will free up $14.19 to redeploy into a stronger opportunity.",
       "confidence": 8,
-      "x_post": "[AlgoMind | 14:57 ET] SELL AAPL \ud83d\udd34\n\nAAPL shows a clear sell signal with RSI at 65.2 (above 60 threshold) combined with a significant -2.06% price decline on high volume of 31.9M shares. This momentum...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+      "x_post": "[AlgoMind | 09:30 ET] SELL TSLA \ud83d\udd34\n\nTSLA position is down 2.94% from entry ($14.62 vs current $14.19 position value), triggering the mandatory stop-loss rule of selling positions down >2%. While TSLA...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -200,9 +191,9 @@
       "return_pct": 0.34
     },
     {
-      "date": "2026-04-21",
-      "portfolio_value": 50.29,
-      "return_pct": 0.58
+      "date": "2026-04-28",
+      "portfolio_value": 49.77,
+      "return_pct": -0.46
     }
   ],
   "ai_log": [
@@ -1091,39 +1082,439 @@
       ]
     },
     {
-      "timestamp": "2026-04-21T14:27:13.133176-04:00",
-      "message": "BLOCKED BUY TSLA \u2014 MAX_POSITION_PCT: existing $15.10 + $15.00 = $30.10 exceeds 30% cap ($15.07) of $50.23 portfolio",
+      "timestamp": "2026-04-22T12:16:07.370273-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Wednesday, Apr 22\nTop mover: AAPL +2.69% (RSI 67)\nOverbought (RSI>70): NVDA, MSFT, ",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-22T12:16:14.761214-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MAX_POSITION_PCT: existing $15.15 + $15.10 = $30.25 exceeds 30% cap ($15.10) of $50.34 portfolio",
       "tags": [
         "risk-blocked",
         "tsla"
       ]
     },
     {
-      "timestamp": "2026-04-21T14:57:21.768033-04:00",
+      "timestamp": "2026-04-22T12:46:21.334881-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-22T13:16:28.993524-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-22T14:16:37.914265-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-22T14:46:46.012507-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-22T15:16:55.454276-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-22T15:47:04.012526-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T09:30:24.944042-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Thursday, Apr 23\nTop mover: AAPL +2.63% (RSI 67)\nOverbought (RSI>70): NVDA, MSFT, A",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T09:30:33.113548-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T10:00:39.687342-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T10:30:46.776357-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T11:00:54.900418-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T11:31:03.432720-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MAX_POSITION_PCT: existing $14.64 + $14.95 = $29.59 exceeds 30% cap ($14.95) of $49.82 portfolio",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T12:01:10.627100-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T12:31:20.355330-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T13:01:28.497126-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T13:31:35.401245-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T14:01:47.392830-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T14:31:55.338860-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T15:02:01.755346-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-23T15:32:09.994556-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T09:30:26.669309-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Friday, Apr 24\nTop mover: MSFT -3.97% (RSI 72)\nOverbought (RSI>70): NVDA, MSFT, AMZ",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T09:30:33.953601-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T10:00:44.718496-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T10:30:51.464242-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T11:00:58.876461-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T11:31:07.132598-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T12:01:17.329801-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T12:31:25.123704-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T13:01:31.735273-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T13:31:38.487186-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T14:01:45.972389-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T14:31:53.229208-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T15:02:00.226106-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-24T15:32:07.107829-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T09:30:35.724194-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Monday, Apr 27\nTop mover: NVDA +4.32% (RSI 87)\nOverbought (RSI>70): NVDA, MSFT, AMZ",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T09:30:42.443446-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T10:00:49.840954-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T10:30:59.109013-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T11:01:07.427288-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T11:31:14.117785-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T12:01:21.633952-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T12:31:30.115609-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T13:01:38.199500-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T13:31:45.769920-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T14:01:52.998144-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T14:32:00.624415-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T15:02:08.234856-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27T15:32:16.248884-04:00",
+      "message": "BLOCKED SELL TSLA \u2014 PDT_SAFE: 3 day trades in rolling 5-day window (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-04-28T09:30:41.762656-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Tuesday, Apr 28\nTop mover: NVDA +4.00% (RSI 89)\nOverbought (RSI>70): NVDA, MSFT, AM",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
+    },
+    {
+      "timestamp": "2026-04-28T09:30:49.990749-04:00",
       "message": "Telegram alert sent",
       "tags": [
         "telegram"
       ]
     },
     {
-      "timestamp": "2026-04-21T14:57:21.943282-04:00",
-      "message": "Trade posted to X: [AlgoMind | 14:57 ET] SELL AAPL \ud83d\udd34\n\nAAPL shows a clear sell signal with RSI at 65.2 (above 60 thresho",
+      "timestamp": "2026-04-28T09:30:50.186675-04:00",
+      "message": "Trade posted to X: [AlgoMind | 09:30 ET] SELL TSLA \ud83d\udd34\n\nTSLA position is down 2.94% from entry ($14.62 vs current $14.19 ",
       "tags": [
         "x-post",
         "trade"
       ]
     },
     {
-      "timestamp": "2026-04-21T14:57:21.944000-04:00",
-      "message": "AAPL shows a clear sell signal with RSI at 65.2 (above 60 threshold) combined with a significant -2.06% price decline on high volume of 31.9M shares. This momentum confirmation suggests continued weakness. With only a small $0.07 profit, it's prudent to lock in gains and redeploy capital into oversold opportunities. TSLA remains attractive with RSI at 56.9 (neutral zone) despite minor decline.",
+      "timestamp": "2026-04-28T09:30:50.189338-04:00",
+      "message": "TSLA position is down 2.94% from entry ($14.62 vs current $14.19 position value), triggering the mandatory stop-loss rule of selling positions down >2%. While TSLA shows positive momentum today (+0.63%) and RSI of 65.9 is in neutral territory, cutting losses fast is critical for capital preservation in this small portfolio. This will free up $14.19 to redeploy into a stronger opportunity.",
       "tags": [
         "sell",
-        "aapl"
+        "tsla"
       ]
     }
   ],
-  "last_updated": "2026-04-21T14:57:21.944000-04:00",
-  "last_outlook_date": "2026-04-21",
+  "last_updated": "2026-04-28T09:30:50.189338-04:00",
+  "last_outlook_date": "2026-04-28",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
@@ -1132,5 +1523,5 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-04-21T14:57:21.944000-04:00"
+  "last_cycle_utc": "2026-04-28T09:30:50.189338-04:00"
 }
