@@ -21,9 +21,7 @@ logger = logging.getLogger(__name__)
 
 # ── Rule constants ─────────────────────────────────────────────────────────────
 
-MAX_POSITION_PCT    = 0.50       # no single position > 50% of portfolio value (>=$200 portfolios)
-_SMALL_PORTFOLIO_THRESHOLD = 200.00   # below this, use the relaxed cap
-_SMALL_PORTFOLIO_MAX_PCT   = 0.50     # 50% cap for sub-$200 portfolios
+MAX_POSITION_PCT    = 0.50       # no single position > 50% of portfolio value (flat cap, all sizes)
 CASH_BUFFER         = 2.00       # always keep at least $2 cash
 MAX_TRADES_PER_DAY  = 3          # max BUY/SELL orders per UTC calendar day
 DUPLICATE_WINDOW_S  = 15 * 60    # block same-ticker re-order within 15 minutes
@@ -106,16 +104,7 @@ def _rule_max_position(decision: dict, portfolio: dict) -> tuple[bool, str]:
     amt    = float(decision.get("dollar_amount") or 0)
     pv     = float(portfolio.get("portfolio_value", 0))
 
-    if pv < _SMALL_PORTFOLIO_THRESHOLD:
-        cap_pct = _SMALL_PORTFOLIO_MAX_PCT
-        logger.info(
-            "Small-portfolio cap override: $%.2f < $%.0f → using %.0f%% position cap",
-            pv, _SMALL_PORTFOLIO_THRESHOLD, cap_pct * 100,
-        )
-    else:
-        cap_pct = MAX_POSITION_PCT
-
-    limit = pv * cap_pct
+    limit = pv * MAX_POSITION_PCT
 
     # Support both list-of-dicts (reconciliation format) and symbol-keyed dict (legacy)
     positions = portfolio.get("positions", {})
@@ -131,7 +120,7 @@ def _rule_max_position(decision: dict, portfolio: dict) -> tuple[bool, str]:
         return False, (
             f"MAX_POSITION_PCT: existing ${existing_mv:.2f} + ${amt:.2f} "
             f"= ${existing_mv + amt:.2f} exceeds "
-            f"{int(cap_pct * 100)}% cap (${limit:.2f}) of ${pv:.2f} portfolio"
+            f"{int(MAX_POSITION_PCT * 100)}% cap (${limit:.2f}) of ${pv:.2f} portfolio"
         )
     return True, "ok"
 
