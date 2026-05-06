@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 # ── Rule constants ─────────────────────────────────────────────────────────────
 
-MAX_POSITION_PCT    = 0.30       # no single position > 30% of portfolio value (>=$200 portfolios)
+MAX_POSITION_PCT    = 0.50       # no single position > 50% of portfolio value (>=$200 portfolios)
 _SMALL_PORTFOLIO_THRESHOLD = 200.00   # below this, use the relaxed cap
 _SMALL_PORTFOLIO_MAX_PCT   = 0.50     # 50% cap for sub-$200 portfolios
 CASH_BUFFER         = 2.00       # always keep at least $2 cash
@@ -127,7 +127,7 @@ def _rule_max_position(decision: dict, portfolio: dict) -> tuple[bool, str]:
     else:
         existing_mv = float(positions.get(ticker, {}).get("market_value", 0))
 
-    if existing_mv + amt > limit:
+    if round(existing_mv + amt, 2) > round(limit, 2):
         return False, (
             f"MAX_POSITION_PCT: existing ${existing_mv:.2f} + ${amt:.2f} "
             f"= ${existing_mv + amt:.2f} exceeds "

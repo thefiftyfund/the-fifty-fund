@@ -13,7 +13,7 @@ import json
 import logging
 import os
 import textwrap
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 import pytz
@@ -258,10 +258,11 @@ def post_eod_summary(portfolio: dict) -> bool:
     pnl_pct = (pnl / STARTING_CASH) * 100
     now_et  = datetime.now(ET_ZONE).strftime("%b %d")
 
+    day_n = (date.today() - date(2026, 4, 16)).days + 1
     positions_count = len(portfolio.get("positions", {}))
 
     tweet = (
-        f"📊 EOD Summary | {now_et}\n\n"
+        f"📊 EOD Summary | Day {day_n} | {now_et}\n\n"
         f"Portfolio: ${pv:.2f} ({pnl_pct:+.1f}% vs start)\n"
         f"Cash: ${cash:.2f} | Positions: {positions_count}\n"
         f"Total P&L: ${pnl:+.2f}\n\n"
