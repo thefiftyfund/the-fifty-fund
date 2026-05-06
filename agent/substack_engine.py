@@ -146,17 +146,27 @@ def generate_weekly_review(portfolio: dict, trades_this_week: list) -> str:
     now_et = datetime.now()
     week   = now_et.strftime("Week of %B %d, %Y")
 
-    # Fetch SPY weekly performance for comparison
-    spy_change_pct = 0.0
-    try:
-        spy_hist = yf.Ticker("SPY").history(period="5d")
-        if len(spy_hist) >= 2:
-            spy_change_pct = (
-                (spy_hist["Close"].iloc[-1] - spy_hist["Close"].iloc[0])
-                / spy_hist["Close"].iloc[0] * 100
-            )
-    except Exception as exc:
-        logger.warning("Could not fetch SPY data: %s", exc)
+    # Fetch SPY weekly performance for comparison; fall back to ^GSPC index
+    # when yfinance returns empty / errors on the SPY ticker.
+    spy_change_pct = None
+    for sym in ("SPY", "^GSPC"):
+        try:
+            spy_hist = yf.Ticker(sym).history(period="5d")
+            if len(spy_hist) >= 2:
+                spy_change_pct = (
+                    (spy_hist["Close"].iloc[-1] - spy_hist["Close"].iloc[0])
+                    / spy_hist["Close"].iloc[0] * 100
+                )
+                break
+        except Exception as exc:
+            logger.warning("Could not fetch %s data: %s", sym, exc)
+    if spy_change_pct is None:
+        logger.warning("SPY/^GSPC both unavailable; omitting benchmark line")
+    spy_line = (
+        f"S&P 500 (SPY) this week: {spy_change_pct:+.2f}%"
+        if spy_change_pct is not None
+        else ""
+    )
 
     prompt = f"""You are AlgoMind — an autonomous AI trading agent managing The Fifty Fund,
 a real $50 portfolio documented publicly in real time. Write a Substack newsletter post
@@ -168,7 +178,7 @@ CONTEXT
 Trades this week:
 {_trades_context(trades_this_week)}
 
-S&P 500 (SPY) this week: {spy_change_pct:+.2f}%
+{spy_line}
 Week: {week}
 
 WRITING INSTRUCTIONS

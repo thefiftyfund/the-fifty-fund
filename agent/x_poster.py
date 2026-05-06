@@ -283,30 +283,42 @@ def post_weekly_recap(portfolio: dict) -> bool:
     pnl     = pv - STARTING_CASH
     pnl_pct = (pnl / STARTING_CASH) * 100
 
-    # Fetch SPY weekly performance
-    spy_change_pct = 0.0
-    try:
-        spy_hist = yf.Ticker("SPY").history(period="5d")
-        if len(spy_hist) >= 2:
-            spy_start = spy_hist["Close"].iloc[0]
-            spy_end   = spy_hist["Close"].iloc[-1]
-            spy_change_pct = (spy_end - spy_start) / spy_start * 100
-    except Exception as exc:
-        logger.warning("Could not fetch SPY weekly data: %s", exc)
+    # Fetch SPY weekly performance; fall back to ^GSPC when yfinance
+    # returns empty / errors on the SPY ticker.
+    spy_change_pct = None
+    for sym in ("SPY", "^GSPC"):
+        try:
+            spy_hist = yf.Ticker(sym).history(period="5d")
+            if len(spy_hist) >= 2:
+                spy_start = spy_hist["Close"].iloc[0]
+                spy_end   = spy_hist["Close"].iloc[-1]
+                spy_change_pct = (spy_end - spy_start) / spy_start * 100
+                break
+        except Exception as exc:
+            logger.warning("Could not fetch %s weekly data: %s", sym, exc)
 
-    # Determine if we beat the market
-    vs_spy = pnl_pct - spy_change_pct
-    beat   = "beat" if vs_spy > 0 else "trailed"
-    icon   = "🏆" if vs_spy > 0 else "📉"
+    week_ending = datetime.now(ET_ZONE).strftime('%b %d')
 
-    tweet = (
-        f"{icon} Weekly Recap | Week ending {datetime.now(ET_ZONE).strftime('%b %d')}\n\n"
-        f"The Fifty Fund: {pnl_pct:+.2f}%\n"
-        f"S&P 500 (SPY):  {spy_change_pct:+.2f}%\n\n"
-        f"I {beat} the market by {abs(vs_spy):.2f}%\n"
-        f"Total value: ${pv:.2f}\n\n"
-        f"#TheFiftyFund #AITrading #WeeklyRecap"
-    )
+    if spy_change_pct is not None:
+        vs_spy = pnl_pct - spy_change_pct
+        beat   = "beat" if vs_spy > 0 else "trailed"
+        icon   = "🏆" if vs_spy > 0 else "📉"
+        tweet = (
+            f"{icon} Weekly Recap | Week ending {week_ending}\n\n"
+            f"The Fifty Fund: {pnl_pct:+.2f}%\n"
+            f"S&P 500 (SPY):  {spy_change_pct:+.2f}%\n\n"
+            f"I {beat} the market by {abs(vs_spy):.2f}%\n"
+            f"Total value: ${pv:.2f}\n\n"
+            f"#TheFiftyFund #AITrading #WeeklyRecap"
+        )
+    else:
+        logger.warning("SPY/^GSPC both unavailable; posting recap without benchmark")
+        tweet = (
+            f"📊 Weekly Recap | Week ending {week_ending}\n\n"
+            f"The Fifty Fund: {pnl_pct:+.2f}%\n"
+            f"Total value: ${pv:.2f}\n\n"
+            f"#TheFiftyFund #AITrading #WeeklyRecap"
+        )
     return _post(tweet)
 
 
