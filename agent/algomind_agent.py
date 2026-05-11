@@ -454,18 +454,19 @@ def update_dashboard_data(
             data = json.load(fh)
     except (FileNotFoundError, json.JSONDecodeError):
         data = {
-            "portfolio_value":    STARTING_CASH,
-            "starting_capital":   STARTING_CASH,
-            "total_return":       0.0,
-            "total_trades":       0,
-            "win_rate":           None,
-            "start_date":         None,
-            "cash":               STARTING_CASH,
-            "holdings":           [],
-            "trades":             [],
+            "portfolio_value":     STARTING_CASH,
+            "starting_capital":    STARTING_CASH,
+            "total_return":        0.0,
+            "total_return_dollar": 0.0,
+            "total_trades":        0,
+            "win_rate":            None,
+            "start_date":          None,
+            "cash":                STARTING_CASH,
+            "holdings":            [],
+            "trades":              [],
             "performance_history": [],
-            "ai_log":             [],
-            "last_updated":       None,
+            "ai_log":              [],
+            "last_updated":        None,
         }
 
     # ── Fresh post-trade portfolio state ─────────────────────────────────────
@@ -528,12 +529,21 @@ def update_dashboard_data(
         "x_post":        x_post_text,
     }
 
+    # ── Compute return ONCE from a single (starting_value, current_value) pair.
+    #    Both the dollar and pct figures must derive from these same two numbers
+    #    so the dashboard never displays a positive dollar return alongside a
+    #    negative percent (or vice versa) — observed bug pre-fix.
+    starting_value = STARTING_CASH                  # inception capital
+    current_value  = round(pv, 2)                   # live portfolio value
+    return_dollar  = round(current_value - starting_value, 2)
+    return_pct     = round((return_dollar / starting_value) * 100, 2)
+
     # ── Append to historical arrays ───────────────────────────────────────────
     data["trades"].append(trade_entry)
     data["performance_history"].append({
         "date":            today_str,
-        "portfolio_value": round(pv, 2),
-        "return_pct":      round((pv - STARTING_CASH) / STARTING_CASH * 100, 2),
+        "portfolio_value": current_value,
+        "return_pct":      return_pct,
     })
     data["ai_log"].append({
         "timestamp": timestamp,
@@ -543,15 +553,16 @@ def update_dashboard_data(
 
     # ── Recalculate top-level fields ──────────────────────────────────────────
     data.update({
-        "portfolio_value":  round(pv, 2),
-        "starting_capital": STARTING_CASH,
-        "total_return":     round((pv - STARTING_CASH) / STARTING_CASH * 100, 2),
-        "total_trades":     len(data["trades"]),
-        "win_rate":         _compute_win_rate(data["trades"]),
-        "cash":             round(cash, 2),
-        "holdings":         holdings,
-        "last_updated":     timestamp,
-        "last_cycle_utc":   timestamp,
+        "portfolio_value":     current_value,
+        "starting_capital":    starting_value,
+        "total_return":        return_pct,
+        "total_return_dollar": return_dollar,
+        "total_trades":        len(data["trades"]),
+        "win_rate":            _compute_win_rate(data["trades"]),
+        "cash":                round(cash, 2),
+        "holdings":            holdings,
+        "last_updated":        timestamp,
+        "last_cycle_utc":      timestamp,
     })
 
     # ── Write back ────────────────────────────────────────────────────────────
@@ -575,7 +586,7 @@ def update_dashboard_data(
             confidence=trade_entry.get("confidence"),
             x_post=x_post_text,
         )
-        _db.upsert_performance(today_str, round(pv, 2), round((pv - STARTING_CASH) / STARTING_CASH * 100, 2))
+        _db.upsert_performance(today_str, current_value, return_pct)
     except Exception as _exc:
         logger.warning("DB write failed (non-fatal): %s", _exc)
 

@@ -1082,6 +1082,9 @@
   setInterval(updateClock, 1000);
 
   // ── Countdown Timer ──
+  // Latched by loadData() so the countdown's staleness guard can see it.
+  let lastCycleUtc = null;
+
   function updateCountdown() {
     const now = new Date();
     const etDate = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
@@ -1103,9 +1106,24 @@
       else if (day === 0) nextDay = 'Monday';
       else nextDay = dayNames[day + 1];
       display.textContent = 'Market Closed \u2014 Next session: ' + nextDay + ' 9:30 AM ET';
+      display.style.color = '';
       bar.classList.remove('urgent');
       return;
     }
+
+    // Staleness guard: if market is open but no cycle has fired in >2h, the
+    // agent is almost certainly dead \u2014 surface it instead of letting the
+    // countdown lull viewers into thinking trading is still happening.
+    if (lastCycleUtc) {
+      const lastMs = Date.parse(lastCycleUtc);
+      if (!isNaN(lastMs) && (Date.now() - lastMs) > 2 * 60 * 60 * 1000) {
+        display.textContent = 'Agent down \u2014 investigating';
+        display.style.color = 'red';
+        bar.classList.remove('urgent');
+        return;
+      }
+    }
+    display.style.color = '';
 
     const secsIntoCycle = ((totalMins - 570) * 60 + s) % 1800;
     const secsRemaining = 1800 - secsIntoCycle;
@@ -1181,12 +1199,13 @@
   async function loadData() {
     const [live, sd] = await Promise.all([loadLivePortfolio(), loadStaticData()]);
     const hasLive    = live !== null;
-    const portfolioValue = live?.portfolio_value ?? sd?.portfolio_value ?? 50;
-    const cash           = live?.cash            ?? sd?.cash            ?? 50;
+    const startingCapital = sd?.starting_capital ?? 50;
+    const portfolioValue = live?.portfolio_value ?? sd?.portfolio_value ?? startingCapital;
+    const cash           = live?.cash            ?? sd?.cash            ?? startingCapital;
     const buyingPower    = live?.buying_power    ?? null;
     const lastUpdated    = live?.last_updated    ?? sd?.last_updated;
-    const totalReturn    = sd?.total_return ?? 0;
     const positions      = live?.positions ?? sd?.holdings ?? [];
+    lastCycleUtc = sd?.last_cycle_utc ?? null;
 
     document.getElementById('livePortfolioBadge').style.display = hasLive ? 'inline-block' : 'none';
     document.getElementById('holdingsLiveBadge').style.display  = hasLive ? 'inline-block' : 'none';
@@ -1195,11 +1214,14 @@
     document.getElementById('portfolioValue').textContent = '$' + portfolioValue.toFixed(2);
     document.getElementById('cashDisplay').textContent = '$' + cash.toFixed(2);
     document.getElementById('buyingPowerDisplay').textContent = buyingPower != null ? '$' + buyingPower.toFixed(2) : '--';
+    // Derive both pct AND dollar return from the same (startingCapital, portfolioValue)
+    // pair — historically these came from different sources (live for $, stale
+    // data.json for %) and disagreed in sign.
+    const pnlD = portfolioValue - startingCapital;
+    const ret  = startingCapital > 0 ? (pnlD / startingCapital) * 100 : 0;
     const retEl = document.getElementById('totalReturn');
-    const ret = totalReturn;
     retEl.textContent = (ret>=0?'+':'')+ret.toFixed(2)+'%';
     retEl.className = 'stat-value'+(ret<0?' negative':'');
-    const pnlD = portfolioValue - 50;
     document.getElementById('returnDollar').textContent = (pnlD>=0?'+':'')+'$'+Math.abs(pnlD).toFixed(2);
     document.getElementById('totalTrades').textContent = sd?.total_trades ?? 0;
     document.getElementById('totalTrades').nextElementSibling.textContent = 'Win Rate: '+((sd?.win_rate!=null)?sd.win_rate.toFixed(0)+'%':'--');

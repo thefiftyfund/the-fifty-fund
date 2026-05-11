@@ -22,7 +22,10 @@ logger = logging.getLogger(__name__)
 # ── Rule constants ─────────────────────────────────────────────────────────────
 
 MAX_POSITION_PCT    = 0.50       # no single position > 50% of portfolio value (flat cap, all sizes)
-CASH_BUFFER         = 2.00       # always keep at least $2 cash
+# Sub-$200 portfolio: a $2 buffer ate ~1% of NAV and blocked legitimate
+# buys (3 consecutive blocked cycles observed). $1 still covers fee/slippage
+# rounding without starving small-dollar BUYs.
+CASH_BUFFER         = 1.00       # always keep at least $1 cash
 MAX_TRADES_PER_DAY  = 3          # max BUY/SELL orders per UTC calendar day
 DUPLICATE_WINDOW_S  = 15 * 60    # block same-ticker re-order within 15 minutes
 MIN_ORDER_VALUE     = 1.00       # minimum dollar amount for any order
@@ -306,7 +309,7 @@ if __name__ == "__main__":
          {"action": "BUY", "ticker": "AAPL", "dollar_amount": 0.50},
          False),
         ("BUY would breach cash buffer",
-         {"action": "BUY", "ticker": "AAPL", "dollar_amount": 44.00},
+         {"action": "BUY", "ticker": "AAPL", "dollar_amount": 44.50},
          False),
         ("BUY would exceed 50% position cap (small portfolio)",
          {"action": "BUY", "ticker": "NVDA", "dollar_amount": 21.00},
