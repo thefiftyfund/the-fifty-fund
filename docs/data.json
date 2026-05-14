@@ -2310,10 +2310,122 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-05-13T09:30:42.284727-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T10:00:49.479302-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T10:30:55.335854-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T11:01:05.624947-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T11:31:12.236855-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T12:01:22.730975-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T12:31:31.690143-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T13:01:38.383774-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T13:31:45.262563-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T14:01:55.763446-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T14:32:05.272133-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T15:02:14.598683-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-13T15:32:20.848243-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-14T09:30:38.063077-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Thursday, May 14\nTop mover: GOOGL +3.94% (RSI 83)\nOverbought (RSI>70): AAPL, TSLA, ",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-05-12T15:02:05.162646-04:00",
-  "last_outlook_date": "2026-05-13",
+  "last_outlook_date": "2026-05-14",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
