@@ -2534,10 +2534,122 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-05-15T09:30:51.039600-04:00",
+      "message": "BLOCKED BUY MSFT \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "msft"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T10:00:58.125806-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T10:31:07.918321-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T11:01:20.662777-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T11:31:27.956060-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T12:01:41.334589-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T12:31:47.925130-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T13:01:55.784040-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T13:32:02.014287-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T14:02:11.330585-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T14:32:17.951187-04:00",
+      "message": "BLOCKED BUY META \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T15:02:31.170849-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-15T15:32:37.362745-04:00",
+      "message": "BLOCKED BUY META \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "meta"
+      ]
+    },
+    {
+      "timestamp": "2026-05-18T09:30:21.890261-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Monday, May 18\nTop mover: TSLA -4.75% (RSI 67)\nOversold  (RSI<30): META\nOverbought ",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-05-12T15:02:05.162646-04:00",
-  "last_outlook_date": "2026-05-15",
+  "last_outlook_date": "2026-05-18",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
