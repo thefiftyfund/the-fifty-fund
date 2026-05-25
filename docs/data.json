@@ -3094,10 +3094,122 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-05-22T09:30:52.123439-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T10:01:01.277700-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T10:31:08.019876-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T11:01:19.124032-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T11:31:25.747707-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T12:01:33.279177-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T12:31:40.596239-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T13:01:47.519947-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T13:31:54.768227-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T14:02:01.250653-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T14:32:08.255209-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T15:02:15.043582-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-22T15:32:21.938338-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-05-25T09:30:04.638101-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Monday, May 25\nTop mover: TSLA +1.95% (RSI 62)\nOverbought (RSI>70): AAPL, SPY, QQQ\n",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-05-12T15:02:05.162646-04:00",
-  "last_outlook_date": "2026-05-22",
+  "last_outlook_date": "2026-05-25",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
