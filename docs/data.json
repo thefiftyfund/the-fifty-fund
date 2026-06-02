@@ -3758,10 +3758,122 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-06-01T09:30:46.890408-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T10:01:30.918368-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T10:31:44.497683-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T11:01:58.619532-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T11:32:12.765638-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T12:02:26.731604-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T12:32:39.716202-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T13:02:54.082325-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T13:33:07.553180-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T14:03:20.670872-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T14:33:33.349733-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T15:03:45.402277-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T15:33:57.920005-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T09:30:51.624853-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Tuesday, Jun 02\nTop mover: NVDA +6.26% (RSI 54)\nOverbought (RSI>70): AAPL, MSFT\n\nSc",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-05-12T15:02:05.162646-04:00",
-  "last_outlook_date": "2026-06-01",
+  "last_outlook_date": "2026-06-02",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
