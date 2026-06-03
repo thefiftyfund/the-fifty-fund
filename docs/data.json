@@ -3870,10 +3870,122 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-06-02T09:30:59.994666-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T10:01:07.133433-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T10:31:15.981365-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T11:01:22.089207-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T11:31:29.178817-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T12:01:35.588556-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T12:31:42.291205-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T13:01:50.294681-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T13:31:57.322475-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.96 cash \u2212 $1.00 buffer = $0.96 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T14:02:05.162479-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T14:32:11.202450-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T15:02:17.455288-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-02T15:32:24.215542-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-03T09:30:09.822184-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Wednesday, Jun 03\nTop mover: MSFT -4.17% (RSI 66)\nOverbought (RSI>70): AAPL, SPY, Q",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-05-12T15:02:05.162646-04:00",
-  "last_outlook_date": "2026-06-02",
+  "last_outlook_date": "2026-06-03",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
