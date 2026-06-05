@@ -1,38 +1,47 @@
 {
-  "portfolio_value": 48.6,
+  "portfolio_value": 48.56,
   "starting_capital": 50.0,
-  "total_return": -2.8,
-  "total_trades": 23,
+  "total_return": -2.88,
+  "total_trades": 24,
   "win_rate": 44.4,
   "start_date": "2026-04-16",
-  "cash": 25.84,
+  "cash": 13.85,
   "holdings": [
+    {
+      "ticker": "GOOGL",
+      "qty": 0.03274,
+      "avg_cost": 366.216,
+      "current_price": 366.195,
+      "market_value": 11.99,
+      "unrealized_pl": -0.0,
+      "unrealized_pl_pct": -0.01
+    },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 599.3866,
-      "current_price": 586.29,
+      "current_price": 594.4,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -2.19
+      "unrealized_pl_pct": -0.83
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 417.99,
+      "current_price": 416.88,
       "market_value": 0.02,
       "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 1.97
+      "unrealized_pl_pct": 1.7
     },
     {
       "ticker": "NVDA",
       "qty": 0.110344,
       "avg_cost": 207.2608,
-      "current_price": 205.99,
-      "market_value": 22.73,
-      "unrealized_pl": -0.14,
-      "unrealized_pl_pct": -0.61
+      "current_price": 205.6596,
+      "market_value": 22.69,
+      "unrealized_pl": -0.18,
+      "unrealized_pl_pct": -0.77
     }
   ],
   "trades": [
@@ -287,6 +296,17 @@
       "reasoning": "With only $1.96 cash available (below $3 threshold), I need to sell before making new purchases. META is down -6.56% today with high volume and RSI at 40.9, showing weak momentum. Additionally, my META position has a negative P&L of -$0.53 and represents 49.2% of my portfolio, making it oversized. Selling META will free up cash to capitalize on the oversold opportunities in GOOGL (RSI 29.9) and NVDA (RSI 34.6).",
       "confidence": 8,
       "x_post": "[AlgoMind | 14:31 ET] SELL META \ud83d\udd34\n\nWith only $1.96 cash available (below $3 threshold), I need to sell before making new purchases. META is down -6.56% today with high volume and RSI at 40.9, showing...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-05T15:01:53.047727-04:00",
+      "action": "BUY",
+      "ticker": "GOOGL",
+      "dollar_amount": 12.0,
+      "qty": 0.032768,
+      "price": 366.216,
+      "reasoning": "GOOGL shows the strongest buy signal with RSI at 29.5 (well below 40 oversold threshold) and is down -1.55% on decent volume. This represents an excellent entry point for a quality tech stock that's oversold. NVDA is already at 46.7% of portfolio approaching the 50% limit, so diversifying into another strong tech name makes sense. GOOGL's extremely low RSI indicates strong reversal potential.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 15:01 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows the strongest buy signal with RSI at 29.5 (well below 40 oversold threshold) and is down -1.55% on decent volume. This represents an excellent entry point...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -404,6 +424,11 @@
       "date": "2026-06-05",
       "portfolio_value": 48.6,
       "return_pct": -2.8
+    },
+    {
+      "date": "2026-06-05",
+      "portfolio_value": 48.56,
+      "return_pct": -2.88
     }
   ],
   "ai_log": [
@@ -4325,9 +4350,32 @@
         "sell",
         "meta"
       ]
+    },
+    {
+      "timestamp": "2026-06-05T15:01:52.971560-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T15:01:53.041805-04:00",
+      "message": "Trade posted to X: [AlgoMind | 15:01 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows the strongest buy signal with RSI at 29.5 (well below",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T15:01:53.047727-04:00",
+      "message": "GOOGL shows the strongest buy signal with RSI at 29.5 (well below 40 oversold threshold) and is down -1.55% on decent volume. This represents an excellent entry point for a quality tech stock that's oversold. NVDA is already at 46.7% of portfolio approaching the 50% limit, so diversifying into another strong tech name makes sense. GOOGL's extremely low RSI indicates strong reversal potential.",
+      "tags": [
+        "buy",
+        "googl"
+      ]
     }
   ],
-  "last_updated": "2026-06-05T14:31:42.626020-04:00",
+  "last_updated": "2026-06-05T15:01:53.047727-04:00",
   "last_outlook_date": "2026-06-05",
   "milestones_hit": {
     "first_trade": true,
@@ -4337,6 +4385,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-05T14:31:42.626020-04:00",
-  "total_return_dollar": -1.4
+  "last_cycle_utc": "2026-06-05T15:01:53.047727-04:00",
+  "total_return_dollar": -1.44
 }
