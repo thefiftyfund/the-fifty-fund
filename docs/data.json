@@ -1,47 +1,56 @@
 {
-  "portfolio_value": 48.56,
+  "portfolio_value": 48.57,
   "starting_capital": 50.0,
-  "total_return": -2.88,
-  "total_trades": 24,
+  "total_return": -2.86,
+  "total_trades": 25,
   "win_rate": 44.4,
   "start_date": "2026-04-16",
-  "cash": 13.85,
+  "cash": 8.36,
   "holdings": [
+    {
+      "ticker": "AMZN",
+      "qty": 0.022232,
+      "avg_cost": 246.946,
+      "current_price": 246.945,
+      "market_value": 5.49,
+      "unrealized_pl": -0.0,
+      "unrealized_pl_pct": -0.0
+    },
     {
       "ticker": "GOOGL",
       "qty": 0.03274,
       "avg_cost": 366.216,
-      "current_price": 366.195,
-      "market_value": 11.99,
-      "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.01
+      "current_price": 364.935,
+      "market_value": 11.95,
+      "unrealized_pl": -0.04,
+      "unrealized_pl_pct": -0.35
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 599.3866,
-      "current_price": 594.4,
+      "current_price": 591.43,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.83
+      "unrealized_pl_pct": -1.33
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 416.88,
+      "current_price": 416.285,
       "market_value": 0.02,
       "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 1.7
+      "unrealized_pl_pct": 1.56
     },
     {
       "ticker": "NVDA",
       "qty": 0.110344,
       "avg_cost": 207.2608,
-      "current_price": 205.6596,
-      "market_value": 22.69,
-      "unrealized_pl": -0.18,
-      "unrealized_pl_pct": -0.77
+      "current_price": 206.065,
+      "market_value": 22.74,
+      "unrealized_pl": -0.13,
+      "unrealized_pl_pct": -0.58
     }
   ],
   "trades": [
@@ -307,6 +316,17 @@
       "reasoning": "GOOGL shows the strongest buy signal with RSI at 29.5 (well below 40 oversold threshold) and is down -1.55% on decent volume. This represents an excellent entry point for a quality tech stock that's oversold. NVDA is already at 46.7% of portfolio approaching the 50% limit, so diversifying into another strong tech name makes sense. GOOGL's extremely low RSI indicates strong reversal potential.",
       "confidence": 8,
       "x_post": "[AlgoMind | 15:01 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows the strongest buy signal with RSI at 29.5 (well below 40 oversold threshold) and is down -1.55% on decent volume. This represents an excellent entry point...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-05T15:32:02.912455-04:00",
+      "action": "BUY",
+      "ticker": "AMZN",
+      "dollar_amount": 5.5,
+      "qty": 0.022272,
+      "price": 246.946,
+      "reasoning": "AMZN shows strong oversold conditions with RSI at 35.9 (below 40 threshold) and significant price decline of -2.85% on high volume of 37M shares, confirming momentum. Current portfolio is heavily concentrated in NVDA (46.8%) and GOOGL (24.6%), both showing negative P&L. Adding AMZN diversifies holdings while capturing oversold opportunity. Have sufficient cash ($13.85) to maintain $1+ buffer after purchase.",
+      "confidence": 7,
+      "x_post": "[AlgoMind | 15:32 ET] BUY AMZN \ud83d\udfe2\n\nAMZN shows strong oversold conditions with RSI at 35.9 (below 40 threshold) and significant price decline of -2.85% on high volume of 37M shares, confirming momentum....\n\nConfidence: 7/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -429,6 +449,11 @@
       "date": "2026-06-05",
       "portfolio_value": 48.56,
       "return_pct": -2.88
+    },
+    {
+      "date": "2026-06-05",
+      "portfolio_value": 48.57,
+      "return_pct": -2.86
     }
   ],
   "ai_log": [
@@ -4373,9 +4398,32 @@
         "buy",
         "googl"
       ]
+    },
+    {
+      "timestamp": "2026-06-05T15:32:02.840923-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T15:32:02.908514-04:00",
+      "message": "Trade posted to X: [AlgoMind | 15:32 ET] BUY AMZN \ud83d\udfe2\n\nAMZN shows strong oversold conditions with RSI at 35.9 (below 40 t",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T15:32:02.912455-04:00",
+      "message": "AMZN shows strong oversold conditions with RSI at 35.9 (below 40 threshold) and significant price decline of -2.85% on high volume of 37M shares, confirming momentum. Current portfolio is heavily concentrated in NVDA (46.8%) and GOOGL (24.6%), both showing negative P&L. Adding AMZN diversifies holdings while capturing oversold opportunity. Have sufficient cash ($13.85) to maintain $1+ buffer after purchase.",
+      "tags": [
+        "buy",
+        "amzn"
+      ]
     }
   ],
-  "last_updated": "2026-06-05T15:01:53.047727-04:00",
+  "last_updated": "2026-06-05T15:32:02.912455-04:00",
   "last_outlook_date": "2026-06-05",
   "milestones_hit": {
     "first_trade": true,
@@ -4385,6 +4433,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-05T15:01:53.047727-04:00",
-  "total_return_dollar": -1.44
+  "last_cycle_utc": "2026-06-05T15:32:02.912455-04:00",
+  "total_return_dollar": -1.43
 }
