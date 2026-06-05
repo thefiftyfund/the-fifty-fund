@@ -4094,10 +4094,122 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-06-04T09:30:50.239500-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T10:00:57.940093-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T10:31:07.837280-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T11:01:18.174847-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T11:31:25.434749-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T12:01:36.427563-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T12:31:43.283023-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T13:01:50.016199-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T13:31:57.193364-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T14:02:04.011261-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T14:32:10.146063-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T15:02:16.009159-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-04T15:32:23.044452-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T09:30:10.493125-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Friday, Jun 05\nTop mover: GOOGL +3.68% (RSI 30)\n\nScanning for signals\u2026 #TheFiftyFun",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-05-12T15:02:05.162646-04:00",
-  "last_outlook_date": "2026-06-04",
+  "last_outlook_date": "2026-06-05",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
