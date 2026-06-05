@@ -1,38 +1,38 @@
 {
-  "portfolio_value": 50.73,
+  "portfolio_value": 48.6,
   "starting_capital": 50.0,
-  "total_return": 1.46,
-  "total_trades": 22,
-  "win_rate": 50.0,
+  "total_return": -2.8,
+  "total_trades": 23,
+  "win_rate": 44.4,
   "start_date": "2026-04-16",
-  "cash": 1.96,
+  "cash": 25.84,
   "holdings": [
     {
       "ticker": "META",
-      "qty": 0.040825,
+      "qty": 2.5e-05,
       "avg_cost": 599.3866,
-      "current_price": 599.72,
-      "market_value": 24.48,
-      "unrealized_pl": 0.01,
-      "unrealized_pl_pct": 0.06
+      "current_price": 586.29,
+      "market_value": 0.01,
+      "unrealized_pl": -0.0,
+      "unrealized_pl_pct": -2.19
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 408.345,
+      "current_price": 417.99,
       "market_value": 0.02,
-      "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.38
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 1.97
     },
     {
       "ticker": "NVDA",
       "qty": 0.110344,
       "avg_cost": 207.2608,
-      "current_price": 219.9701,
-      "market_value": 24.27,
-      "unrealized_pl": 1.4,
-      "unrealized_pl_pct": 6.13
+      "current_price": 205.99,
+      "market_value": 22.73,
+      "unrealized_pl": -0.14,
+      "unrealized_pl_pct": -0.61
     }
   ],
   "trades": [
@@ -276,6 +276,17 @@
       "reasoning": "MSFT shows strong sell signal with RSI at 35.2 (below 40 threshold) and negative momentum with -1.12% price move on high volume. This position represents only 2% of portfolio and has no P&L gain, making it the weakest position. Selling will increase cash to ~$2.00, providing better buying power for stronger opportunities like META which has extremely oversold RSI of 23.5.",
       "confidence": 8,
       "x_post": "[AlgoMind | 15:02 ET] SELL MSFT \ud83d\udd34\n\nMSFT shows strong sell signal with RSI at 35.2 (below 40 threshold) and negative momentum with -1.12% price move on high volume. This position represents only 2% of...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-05T14:31:42.626020-04:00",
+      "action": "SELL",
+      "ticker": "META",
+      "dollar_amount": null,
+      "qty": 0.0408,
+      "price": 586.4044,
+      "reasoning": "With only $1.96 cash available (below $3 threshold), I need to sell before making new purchases. META is down -6.56% today with high volume and RSI at 40.9, showing weak momentum. Additionally, my META position has a negative P&L of -$0.53 and represents 49.2% of my portfolio, making it oversized. Selling META will free up cash to capitalize on the oversold opportunities in GOOGL (RSI 29.9) and NVDA (RSI 34.6).",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 14:31 ET] SELL META \ud83d\udd34\n\nWith only $1.96 cash available (below $3 threshold), I need to sell before making new purchases. META is down -6.56% today with high volume and RSI at 40.9, showing...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -388,6 +399,11 @@
       "date": "2026-05-12",
       "portfolio_value": 50.73,
       "return_pct": 1.46
+    },
+    {
+      "date": "2026-06-05",
+      "portfolio_value": 48.6,
+      "return_pct": -2.8
     }
   ],
   "ai_log": [
@@ -4206,9 +4222,112 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-06-05T09:30:19.290384-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T10:00:28.432997-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T10:30:35.244205-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T11:00:42.276413-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T11:30:51.642012-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T12:00:58.239571-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T12:31:10.457304-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T13:01:18.838854-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T13:31:26.366857-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T14:01:33.972461-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MIN_ORDER_VALUE: $0.96 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T14:31:42.546747-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T14:31:42.622358-04:00",
+      "message": "Trade posted to X: [AlgoMind | 14:31 ET] SELL META \ud83d\udd34\n\nWith only $1.96 cash available (below $3 threshold), I need to se",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-05T14:31:42.626020-04:00",
+      "message": "With only $1.96 cash available (below $3 threshold), I need to sell before making new purchases. META is down -6.56% today with high volume and RSI at 40.9, showing weak momentum. Additionally, my META position has a negative P&L of -$0.53 and represents 49.2% of my portfolio, making it oversized. Selling META will free up cash to capitalize on the oversold opportunities in GOOGL (RSI 29.9) and NVDA (RSI 34.6).",
+      "tags": [
+        "sell",
+        "meta"
+      ]
     }
   ],
-  "last_updated": "2026-05-12T15:02:05.162646-04:00",
+  "last_updated": "2026-06-05T14:31:42.626020-04:00",
   "last_outlook_date": "2026-06-05",
   "milestones_hit": {
     "first_trade": true,
@@ -4218,6 +4337,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-05-12T15:02:05.162646-04:00",
-  "total_return_dollar": 0.73
+  "last_cycle_utc": "2026-06-05T14:31:42.626020-04:00",
+  "total_return_dollar": -1.4
 }
