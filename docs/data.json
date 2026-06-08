@@ -1,56 +1,47 @@
 {
-  "portfolio_value": 48.98,
+  "portfolio_value": 48.6,
   "starting_capital": 50.0,
-  "total_return": -2.04,
-  "total_trades": 26,
-  "win_rate": 44.4,
+  "total_return": -2.8,
+  "total_trades": 27,
+  "win_rate": 40.0,
   "start_date": "2026-04-16",
-  "cash": 1.36,
+  "cash": 20.11,
   "holdings": [
     {
       "ticker": "AMZN",
       "qty": 0.022232,
       "avg_cost": 246.946,
-      "current_price": 247.51,
-      "market_value": 5.5,
-      "unrealized_pl": 0.01,
-      "unrealized_pl_pct": 0.23
-    },
-    {
-      "ticker": "GOOGL",
-      "qty": 0.051869,
-      "avg_cost": 365.9188,
-      "current_price": 365.45,
-      "market_value": 18.96,
+      "current_price": 245.845,
+      "market_value": 5.47,
       "unrealized_pl": -0.02,
-      "unrealized_pl_pct": -0.13
+      "unrealized_pl_pct": -0.45
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 590.71,
+      "current_price": 587.28,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.81
+      "unrealized_pl_pct": -1.39
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 415.88,
+      "current_price": 410.1907,
       "market_value": 0.02,
       "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 1.46
+      "unrealized_pl_pct": 0.07
     },
     {
       "ticker": "NVDA",
       "qty": 0.110344,
       "avg_cost": 207.2608,
-      "current_price": 209.72,
-      "market_value": 23.14,
-      "unrealized_pl": 0.27,
-      "unrealized_pl_pct": 1.19
+      "current_price": 208.37,
+      "market_value": 22.99,
+      "unrealized_pl": 0.12,
+      "unrealized_pl_pct": 0.54
     }
   ],
   "trades": [
@@ -338,6 +329,17 @@
       "reasoning": "GOOGL shows strong oversold conditions with RSI at 30.4, well below the 40 buy threshold. Despite a -0.98% decline today, it has the lowest RSI among all tracked stocks, indicating potential reversal opportunity. Current GOOGL position is only 24.4% of portfolio, allowing room for additional allocation without breaching the 50% single-ticker limit. The stock has been beaten down and represents good value at current levels with $8.36 cash available.",
       "confidence": 8,
       "x_post": "[AlgoMind | 09:30 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows strong oversold conditions with RSI at 30.4, well below the 40 buy threshold. Despite a -0.98% decline today, it has the lowest RSI among all tracked...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-08T12:00:56.041588-04:00",
+      "action": "SELL",
+      "ticker": "GOOGL",
+      "dollar_amount": null,
+      "qty": 0.051869,
+      "price": 361.8701,
+      "reasoning": "GOOGL shows the strongest sell signal with RSI at 27.7 (oversold but continuing downward momentum), negative price movement of -1.77% today, and it's my largest losing position at -$0.21 P&L. With only $1.36 cash available (below the $3 threshold), I need to sell my weakest position first. GOOGL represents 38.6% of portfolio and is showing continued weakness. This will free up approximately $18.77 to redeploy into stronger opportunities like NVDA (RSI 39.0, up +1.56%) or AMZN (RSI 34.8, oversold buy signal).",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 12:00 ET] SELL GOOGL \ud83d\udd34\n\nGOOGL shows the strongest sell signal with RSI at 27.7 (oversold but continuing downward momentum), negative price movement of -1.77% today, and it's my largest losing...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -470,6 +472,11 @@
       "date": "2026-06-08",
       "portfolio_value": 48.98,
       "return_pct": -2.04
+    },
+    {
+      "date": "2026-06-08",
+      "portfolio_value": 48.6,
+      "return_pct": -2.8
     }
   ],
   "ai_log": [
@@ -4468,9 +4475,64 @@
         "buy",
         "googl"
       ]
+    },
+    {
+      "timestamp": "2026-06-08T10:00:24.813513-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.36 cash \u2212 $1.00 buffer = $0.36 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-08T10:30:31.994496-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.36 cash \u2212 $1.00 buffer = $0.36 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-08T11:00:39.398420-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.36 cash \u2212 $1.00 buffer = $0.36 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-08T11:30:46.396361-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.36 cash \u2212 $1.00 buffer = $0.36 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-08T12:00:55.962621-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-08T12:00:56.037350-04:00",
+      "message": "Trade posted to X: [AlgoMind | 12:00 ET] SELL GOOGL \ud83d\udd34\n\nGOOGL shows the strongest sell signal with RSI at 27.7 (oversold",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-08T12:00:56.041588-04:00",
+      "message": "GOOGL shows the strongest sell signal with RSI at 27.7 (oversold but continuing downward momentum), negative price movement of -1.77% today, and it's my largest losing position at -$0.21 P&L. With only $1.36 cash available (below the $3 threshold), I need to sell my weakest position first. GOOGL represents 38.6% of portfolio and is showing continued weakness. This will free up approximately $18.77 to redeploy into stronger opportunities like NVDA (RSI 39.0, up +1.56%) or AMZN (RSI 34.8, oversold buy signal).",
+      "tags": [
+        "sell",
+        "googl"
+      ]
     }
   ],
-  "last_updated": "2026-06-08T09:30:13.134290-04:00",
+  "last_updated": "2026-06-08T12:00:56.041588-04:00",
   "last_outlook_date": "2026-06-08",
   "milestones_hit": {
     "first_trade": true,
@@ -4480,6 +4542,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-08T09:30:13.134290-04:00",
-  "total_return_dollar": -1.02
+  "last_cycle_utc": "2026-06-08T12:00:56.041588-04:00",
+  "total_return_dollar": -1.4
 }
