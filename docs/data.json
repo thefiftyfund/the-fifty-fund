@@ -1,56 +1,56 @@
 {
-  "portfolio_value": 48.66,
+  "portfolio_value": 49.07,
   "starting_capital": 50.0,
-  "total_return": -2.68,
-  "total_trades": 28,
+  "total_return": -1.86,
+  "total_trades": 29,
   "win_rate": 40.0,
   "start_date": "2026-04-16",
-  "cash": 10.12,
+  "cash": 1.0,
   "holdings": [
     {
       "ticker": "AMZN",
       "qty": 0.022232,
       "avg_cost": 246.946,
-      "current_price": 246.515,
-      "market_value": 5.48,
-      "unrealized_pl": -0.01,
-      "unrealized_pl_pct": -0.17
+      "current_price": 246.94,
+      "market_value": 5.49,
+      "unrealized_pl": -0.0,
+      "unrealized_pl_pct": -0.0
     },
     {
       "ticker": "GOOGL",
-      "qty": 0.027566,
-      "avg_cost": 362.404,
-      "current_price": 362.31,
-      "market_value": 9.99,
-      "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.03
+      "qty": 0.052318,
+      "avg_cost": 365.724,
+      "current_price": 367.965,
+      "market_value": 19.25,
+      "unrealized_pl": 0.12,
+      "unrealized_pl_pct": 0.61
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 587.985,
+      "current_price": 588.56,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -1.27
+      "unrealized_pl_pct": -1.17
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 410.66,
+      "current_price": 407.7,
       "market_value": 0.02,
-      "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 0.18
+      "unrealized_pl": -0.0,
+      "unrealized_pl_pct": -0.54
     },
     {
       "ticker": "NVDA",
       "qty": 0.110344,
       "avg_cost": 207.2608,
-      "current_price": 208.79,
-      "market_value": 23.04,
-      "unrealized_pl": 0.17,
-      "unrealized_pl_pct": 0.74
+      "current_price": 211.09,
+      "market_value": 23.29,
+      "unrealized_pl": 0.42,
+      "unrealized_pl_pct": 1.85
     }
   ],
   "trades": [
@@ -360,6 +360,17 @@
       "reasoning": "GOOGL shows the strongest buy signal with RSI at 27.7 (well below 40 threshold) indicating oversold conditions. The -1.76% price decline on decent volume of 12.4M shares creates an attractive entry point. This would diversify the portfolio away from the current NVDA concentration (47.3%) while maintaining the $1 cash buffer rule. GOOGL represents strong long-term value at these oversold levels.",
       "confidence": 8,
       "x_post": "[AlgoMind | 12:31 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows the strongest buy signal with RSI at 27.7 (well below 40 threshold) indicating oversold conditions. The -1.76% price decline on decent volume of 12.4M...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-09T09:30:47.642209-04:00",
+      "action": "BUY",
+      "ticker": "GOOGL",
+      "dollar_amount": 9.12,
+      "qty": 0.024937,
+      "price": 365.724,
+      "reasoning": "GOOGL shows extremely oversold conditions with RSI at 28.1, well below the 40 buy threshold. Despite the -1.42% decline today, this creates an attractive entry point for a quality mega-cap stock. Current GOOGL position is only 20.6% of portfolio, so adding $9.12 would bring total GOOGL exposure to roughly 39% - still well under the 50% position limit. The oversold RSI combined with reasonable valuation makes this a compelling contrarian play. Keeping $1.00 cash buffer as required.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 09:30 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows extremely oversold conditions with RSI at 28.1, well below the 40 buy threshold. Despite the -1.42% decline today, this creates an attractive entry point...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -502,6 +513,11 @@
       "date": "2026-06-08",
       "portfolio_value": 48.66,
       "return_pct": -2.68
+    },
+    {
+      "date": "2026-06-09",
+      "portfolio_value": 49.07,
+      "return_pct": -1.86
     }
   ],
   "ai_log": [
@@ -4634,9 +4650,32 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-06-09T09:30:47.587995-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T09:30:47.638281-04:00",
+      "message": "Trade posted to X: [AlgoMind | 09:30 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows extremely oversold conditions with RSI at 28.1, well ",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T09:30:47.642209-04:00",
+      "message": "GOOGL shows extremely oversold conditions with RSI at 28.1, well below the 40 buy threshold. Despite the -1.42% decline today, this creates an attractive entry point for a quality mega-cap stock. Current GOOGL position is only 20.6% of portfolio, so adding $9.12 would bring total GOOGL exposure to roughly 39% - still well under the 50% position limit. The oversold RSI combined with reasonable valuation makes this a compelling contrarian play. Keeping $1.00 cash buffer as required.",
+      "tags": [
+        "buy",
+        "googl"
+      ]
     }
   ],
-  "last_updated": "2026-06-08T12:31:06.852320-04:00",
+  "last_updated": "2026-06-09T09:30:47.642209-04:00",
   "last_outlook_date": "2026-06-09",
   "milestones_hit": {
     "first_trade": true,
@@ -4646,6 +4685,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-08T12:31:06.852320-04:00",
-  "total_return_dollar": -1.34
+  "last_cycle_utc": "2026-06-09T09:30:47.642209-04:00",
+  "total_return_dollar": -0.93
 }
