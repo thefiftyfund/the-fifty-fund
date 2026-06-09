@@ -1,56 +1,56 @@
 {
-  "portfolio_value": 49.07,
+  "portfolio_value": 48.28,
   "starting_capital": 50.0,
-  "total_return": -1.86,
-  "total_trades": 29,
-  "win_rate": 40.0,
+  "total_return": -3.44,
+  "total_trades": 30,
+  "win_rate": 36.4,
   "start_date": "2026-04-16",
-  "cash": 1.0,
+  "cash": 10.98,
   "holdings": [
     {
       "ticker": "AMZN",
       "qty": 0.022232,
       "avg_cost": 246.946,
-      "current_price": 246.94,
-      "market_value": 5.49,
-      "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.0
+      "current_price": 245.1825,
+      "market_value": 5.45,
+      "unrealized_pl": -0.04,
+      "unrealized_pl_pct": -0.71
     },
     {
       "ticker": "GOOGL",
       "qty": 0.052318,
       "avg_cost": 365.724,
-      "current_price": 367.965,
-      "market_value": 19.25,
-      "unrealized_pl": 0.12,
-      "unrealized_pl_pct": 0.61
+      "current_price": 364.59,
+      "market_value": 19.07,
+      "unrealized_pl": -0.06,
+      "unrealized_pl_pct": -0.31
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 588.56,
+      "current_price": 592.995,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -1.17
+      "unrealized_pl_pct": -0.43
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 407.7,
+      "current_price": 407.56,
       "market_value": 0.02,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.54
+      "unrealized_pl_pct": -0.57
     },
     {
       "ticker": "NVDA",
-      "qty": 0.110344,
+      "qty": 0.061844,
       "avg_cost": 207.2608,
-      "current_price": 211.09,
-      "market_value": 23.29,
-      "unrealized_pl": 0.42,
-      "unrealized_pl_pct": 1.85
+      "current_price": 206.13,
+      "market_value": 12.75,
+      "unrealized_pl": -0.07,
+      "unrealized_pl_pct": -0.55
     }
   ],
   "trades": [
@@ -371,6 +371,17 @@
       "reasoning": "GOOGL shows extremely oversold conditions with RSI at 28.1, well below the 40 buy threshold. Despite the -1.42% decline today, this creates an attractive entry point for a quality mega-cap stock. Current GOOGL position is only 20.6% of portfolio, so adding $9.12 would bring total GOOGL exposure to roughly 39% - still well under the 50% position limit. The oversold RSI combined with reasonable valuation makes this a compelling contrarian play. Keeping $1.00 cash buffer as required.",
       "confidence": 8,
       "x_post": "[AlgoMind | 09:30 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows extremely oversold conditions with RSI at 28.1, well below the 40 buy threshold. Despite the -1.42% decline today, this creates an attractive entry point...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-09T11:01:11.123556-04:00",
+      "action": "SELL",
+      "ticker": "NVDA",
+      "dollar_amount": null,
+      "qty": 0.0485,
+      "price": 206.1733,
+      "reasoning": "NVDA is my largest position at 47.1% of portfolio and showing weakness with RSI at 38.9 (oversold but declining momentum) and -1.17% daily decline. The position is down $0.12 and represents too much concentration risk. Selling approximately $10 worth will reduce exposure and free up cash for better opportunities while still maintaining some NVDA exposure since it has strong long-term fundamentals.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 11:01 ET] SELL NVDA \ud83d\udd34\n\nNVDA is my largest position at 47.1% of portfolio and showing weakness with RSI at 38.9 (oversold but declining momentum) and -1.17% daily decline. The position is...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -518,6 +529,11 @@
       "date": "2026-06-09",
       "portfolio_value": 49.07,
       "return_pct": -1.86
+    },
+    {
+      "date": "2026-06-09",
+      "portfolio_value": 48.28,
+      "return_pct": -3.44
     }
   ],
   "ai_log": [
@@ -4673,9 +4689,48 @@
         "buy",
         "googl"
       ]
+    },
+    {
+      "timestamp": "2026-06-09T10:00:56.126512-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.00 cash \u2212 $1.00 buffer = $0.00 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T10:31:02.587313-04:00",
+      "message": "BLOCKED BUY AAPL \u2014 CASH_BUFFER: $1.00 cash \u2212 $1.00 buffer = $0.00 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "aapl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T11:01:11.048504-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T11:01:11.119065-04:00",
+      "message": "Trade posted to X: [AlgoMind | 11:01 ET] SELL NVDA \ud83d\udd34\n\nNVDA is my largest position at 47.1% of portfolio and showing wea",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T11:01:11.123556-04:00",
+      "message": "NVDA is my largest position at 47.1% of portfolio and showing weakness with RSI at 38.9 (oversold but declining momentum) and -1.17% daily decline. The position is down $0.12 and represents too much concentration risk. Selling approximately $10 worth will reduce exposure and free up cash for better opportunities while still maintaining some NVDA exposure since it has strong long-term fundamentals.",
+      "tags": [
+        "sell",
+        "nvda"
+      ]
     }
   ],
-  "last_updated": "2026-06-09T09:30:47.642209-04:00",
+  "last_updated": "2026-06-09T11:01:11.123556-04:00",
   "last_outlook_date": "2026-06-09",
   "milestones_hit": {
     "first_trade": true,
@@ -4685,6 +4740,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-09T09:30:47.642209-04:00",
-  "total_return_dollar": -0.93
+  "last_cycle_utc": "2026-06-09T11:01:11.123556-04:00",
+  "total_return_dollar": -1.72
 }
