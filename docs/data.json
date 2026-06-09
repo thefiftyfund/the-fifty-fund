@@ -1,56 +1,65 @@
 {
-  "portfolio_value": 48.28,
+  "portfolio_value": 47.89,
   "starting_capital": 50.0,
-  "total_return": -3.44,
-  "total_trades": 30,
+  "total_return": -4.22,
+  "total_trades": 31,
   "win_rate": 36.4,
   "start_date": "2026-04-16",
-  "cash": 10.98,
+  "cash": 1.01,
   "holdings": [
+    {
+      "ticker": "AAPL",
+      "qty": 0.034191,
+      "avg_cost": 291.598,
+      "current_price": 291.63,
+      "market_value": 9.97,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.01
+    },
     {
       "ticker": "AMZN",
       "qty": 0.022232,
       "avg_cost": 246.946,
-      "current_price": 245.1825,
-      "market_value": 5.45,
-      "unrealized_pl": -0.04,
-      "unrealized_pl_pct": -0.71
+      "current_price": 242.8241,
+      "market_value": 5.4,
+      "unrealized_pl": -0.09,
+      "unrealized_pl_pct": -1.67
     },
     {
       "ticker": "GOOGL",
       "qty": 0.052318,
       "avg_cost": 365.724,
-      "current_price": 364.59,
-      "market_value": 19.07,
-      "unrealized_pl": -0.06,
-      "unrealized_pl_pct": -0.31
+      "current_price": 360.71,
+      "market_value": 18.87,
+      "unrealized_pl": -0.26,
+      "unrealized_pl_pct": -1.37
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 592.995,
+      "current_price": 588.46,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.43
+      "unrealized_pl_pct": -1.19
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 407.56,
+      "current_price": 403.58,
       "market_value": 0.02,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.57
+      "unrealized_pl_pct": -1.54
     },
     {
       "ticker": "NVDA",
       "qty": 0.061844,
       "avg_cost": 207.2608,
-      "current_price": 206.13,
-      "market_value": 12.75,
-      "unrealized_pl": -0.07,
-      "unrealized_pl_pct": -0.55
+      "current_price": 203.785,
+      "market_value": 12.6,
+      "unrealized_pl": -0.21,
+      "unrealized_pl_pct": -1.68
     }
   ],
   "trades": [
@@ -382,6 +391,17 @@
       "reasoning": "NVDA is my largest position at 47.1% of portfolio and showing weakness with RSI at 38.9 (oversold but declining momentum) and -1.17% daily decline. The position is down $0.12 and represents too much concentration risk. Selling approximately $10 worth will reduce exposure and free up cash for better opportunities while still maintaining some NVDA exposure since it has strong long-term fundamentals.",
       "confidence": 8,
       "x_post": "[AlgoMind | 11:01 ET] SELL NVDA \ud83d\udd34\n\nNVDA is my largest position at 47.1% of portfolio and showing weakness with RSI at 38.9 (oversold but declining momentum) and -1.17% daily decline. The position is...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-09T11:31:21.682768-04:00",
+      "action": "BUY",
+      "ticker": "AAPL",
+      "dollar_amount": 9.98,
+      "qty": 0.034225,
+      "price": 291.598,
+      "reasoning": "AAPL shows strong oversold conditions with RSI at 43.3 and is down 3.30% on high volume of 25M shares, indicating potential reversal opportunity. Currently have zero AAPL exposure, so this adds diversification to the tech-heavy portfolio. The significant price drop with volume confirms momentum that could reverse from these oversold levels. Using $9.98 of available $10.98 cash while maintaining required $1 buffer.",
+      "confidence": 7,
+      "x_post": "[AlgoMind | 11:31 ET] BUY AAPL \ud83d\udfe2\n\nAAPL shows strong oversold conditions with RSI at 43.3 and is down 3.30% on high volume of 25M shares, indicating potential reversal opportunity. Currently have zero...\n\nConfidence: 7/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -534,6 +554,11 @@
       "date": "2026-06-09",
       "portfolio_value": 48.28,
       "return_pct": -3.44
+    },
+    {
+      "date": "2026-06-09",
+      "portfolio_value": 47.89,
+      "return_pct": -4.22
     }
   ],
   "ai_log": [
@@ -4728,9 +4753,32 @@
         "sell",
         "nvda"
       ]
+    },
+    {
+      "timestamp": "2026-06-09T11:31:21.582635-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T11:31:21.676745-04:00",
+      "message": "Trade posted to X: [AlgoMind | 11:31 ET] BUY AAPL \ud83d\udfe2\n\nAAPL shows strong oversold conditions with RSI at 43.3 and is down",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T11:31:21.682768-04:00",
+      "message": "AAPL shows strong oversold conditions with RSI at 43.3 and is down 3.30% on high volume of 25M shares, indicating potential reversal opportunity. Currently have zero AAPL exposure, so this adds diversification to the tech-heavy portfolio. The significant price drop with volume confirms momentum that could reverse from these oversold levels. Using $9.98 of available $10.98 cash while maintaining required $1 buffer.",
+      "tags": [
+        "buy",
+        "aapl"
+      ]
     }
   ],
-  "last_updated": "2026-06-09T11:01:11.123556-04:00",
+  "last_updated": "2026-06-09T11:31:21.682768-04:00",
   "last_outlook_date": "2026-06-09",
   "milestones_hit": {
     "first_trade": true,
@@ -4740,6 +4788,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-09T11:01:11.123556-04:00",
-  "total_return_dollar": -1.72
+  "last_cycle_utc": "2026-06-09T11:31:21.682768-04:00",
+  "total_return_dollar": -2.11
 }
