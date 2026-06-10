@@ -4776,10 +4776,82 @@
         "buy",
         "aapl"
       ]
+    },
+    {
+      "timestamp": "2026-06-09T12:01:31.054696-04:00",
+      "message": "BLOCKED SELL GOOGL \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T12:31:36.683864-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.01 cash \u2212 $1.00 buffer = $0.01 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T13:01:43.903819-04:00",
+      "message": "BLOCKED SELL NVDA \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "nvda"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T13:31:51.276244-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.01 cash \u2212 $1.00 buffer = $0.01 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T14:01:58.262167-04:00",
+      "message": "BLOCKED SELL NVDA \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "nvda"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T14:32:04.722948-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.01 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T15:02:11.938658-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.01 cash \u2212 $1.00 buffer = $0.01 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-09T15:32:21.031883-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 CASH_BUFFER: $1.01 cash \u2212 $1.00 buffer = $0.01 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-10T09:30:12.709918-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Wednesday, Jun 10\nTop mover: AAPL -3.65% (RSI 43)\n\nScanning for signals\u2026 #TheFiftyF",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-06-09T11:31:21.682768-04:00",
-  "last_outlook_date": "2026-06-09",
+  "last_outlook_date": "2026-06-10",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
