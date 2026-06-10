@@ -1,65 +1,65 @@
 {
-  "portfolio_value": 47.89,
+  "portfolio_value": 48.08,
   "starting_capital": 50.0,
-  "total_return": -4.22,
-  "total_trades": 31,
-  "win_rate": 36.4,
+  "total_return": -3.84,
+  "total_trades": 32,
+  "win_rate": 33.3,
   "start_date": "2026-04-16",
-  "cash": 1.01,
+  "cash": 19.96,
   "holdings": [
     {
       "ticker": "AAPL",
       "qty": 0.034191,
       "avg_cost": 291.598,
-      "current_price": 291.63,
-      "market_value": 9.97,
-      "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 0.01
+      "current_price": 290.41,
+      "market_value": 9.93,
+      "unrealized_pl": -0.04,
+      "unrealized_pl_pct": -0.41
     },
     {
       "ticker": "AMZN",
       "qty": 0.022232,
       "avg_cost": 246.946,
-      "current_price": 242.8241,
-      "market_value": 5.4,
-      "unrealized_pl": -0.09,
-      "unrealized_pl_pct": -1.67
+      "current_price": 243.49,
+      "market_value": 5.41,
+      "unrealized_pl": -0.08,
+      "unrealized_pl_pct": -1.4
     },
     {
       "ticker": "GOOGL",
-      "qty": 0.052318,
+      "qty": 1.8e-05,
       "avg_cost": 365.724,
-      "current_price": 360.71,
-      "market_value": 18.87,
-      "unrealized_pl": -0.26,
-      "unrealized_pl_pct": -1.37
+      "current_price": 363.01,
+      "market_value": 0.01,
+      "unrealized_pl": -0.0,
+      "unrealized_pl_pct": -0.74
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 588.46,
+      "current_price": 580.5,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -1.19
+      "unrealized_pl_pct": -2.53
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 403.58,
+      "current_price": 400.27,
       "market_value": 0.02,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -1.54
+      "unrealized_pl_pct": -2.35
     },
     {
       "ticker": "NVDA",
       "qty": 0.061844,
-      "avg_cost": 207.2608,
-      "current_price": 203.785,
-      "market_value": 12.6,
-      "unrealized_pl": -0.21,
-      "unrealized_pl_pct": -1.68
+      "avg_cost": 207.2943,
+      "current_price": 206.005,
+      "market_value": 12.74,
+      "unrealized_pl": -0.08,
+      "unrealized_pl_pct": -0.62
     }
   ],
   "trades": [
@@ -402,6 +402,17 @@
       "reasoning": "AAPL shows strong oversold conditions with RSI at 43.3 and is down 3.30% on high volume of 25M shares, indicating potential reversal opportunity. Currently have zero AAPL exposure, so this adds diversification to the tech-heavy portfolio. The significant price drop with volume confirms momentum that could reverse from these oversold levels. Using $9.98 of available $10.98 cash while maintaining required $1 buffer.",
       "confidence": 7,
       "x_post": "[AlgoMind | 11:31 ET] BUY AAPL \ud83d\udfe2\n\nAAPL shows strong oversold conditions with RSI at 43.3 and is down 3.30% on high volume of 25M shares, indicating potential reversal opportunity. Currently have zero...\n\nConfidence: 7/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-10T09:30:23.809368-04:00",
+      "action": "SELL",
+      "ticker": "GOOGL",
+      "dollar_amount": null,
+      "qty": 0.0523,
+      "price": 362.9727,
+      "reasoning": "With only $1.01 cash available (below $3 threshold), I must sell before making any new purchases. GOOGL is my largest position at 39.5% of portfolio and showing negative P&L of -$0.14. Despite having the lowest RSI at 33.0 (oversold), I need to free up capital to take advantage of multiple buy signals. AMZN (RSI 37.0), NVDA (RSI 40.1), and AAPL (RSI 42.5) are all showing oversold conditions. Selling GOOGL will provide approximately $19 in buying power to capitalize on these opportunities.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 09:30 ET] SELL GOOGL \ud83d\udd34\n\nWith only $1.01 cash available (below $3 threshold), I must sell before making any new purchases. GOOGL is my largest position at 39.5% of portfolio and showing...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -559,6 +570,11 @@
       "date": "2026-06-09",
       "portfolio_value": 47.89,
       "return_pct": -4.22
+    },
+    {
+      "date": "2026-06-10",
+      "portfolio_value": 48.08,
+      "return_pct": -3.84
     }
   ],
   "ai_log": [
@@ -4848,9 +4864,32 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-06-10T09:30:23.681091-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-10T09:30:23.765940-04:00",
+      "message": "Trade posted to X: [AlgoMind | 09:30 ET] SELL GOOGL \ud83d\udd34\n\nWith only $1.01 cash available (below $3 threshold), I must sell",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-10T09:30:23.809368-04:00",
+      "message": "With only $1.01 cash available (below $3 threshold), I must sell before making any new purchases. GOOGL is my largest position at 39.5% of portfolio and showing negative P&L of -$0.14. Despite having the lowest RSI at 33.0 (oversold), I need to free up capital to take advantage of multiple buy signals. AMZN (RSI 37.0), NVDA (RSI 40.1), and AAPL (RSI 42.5) are all showing oversold conditions. Selling GOOGL will provide approximately $19 in buying power to capitalize on these opportunities.",
+      "tags": [
+        "sell",
+        "googl"
+      ]
     }
   ],
-  "last_updated": "2026-06-09T11:31:21.682768-04:00",
+  "last_updated": "2026-06-10T09:30:23.809368-04:00",
   "last_outlook_date": "2026-06-10",
   "milestones_hit": {
     "first_trade": true,
@@ -4860,6 +4899,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-09T11:31:21.682768-04:00",
-  "total_return_dollar": -2.11
+  "last_cycle_utc": "2026-06-10T09:30:23.809368-04:00",
+  "total_return_dollar": -1.92
 }
