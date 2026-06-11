@@ -1,65 +1,65 @@
 {
-  "portfolio_value": 47.57,
+  "portfolio_value": 47.2,
   "starting_capital": 50.0,
-  "total_return": -4.86,
-  "total_trades": 36,
-  "win_rate": 33.3,
+  "total_return": -5.6,
+  "total_trades": 37,
+  "win_rate": 30.8,
   "start_date": "2026-04-16",
-  "cash": 1.01,
+  "cash": 10.97,
   "holdings": [
     {
       "ticker": "AAPL",
       "qty": 0.034191,
       "avg_cost": 291.598,
-      "current_price": 290.705,
-      "market_value": 9.94,
-      "unrealized_pl": -0.03,
-      "unrealized_pl_pct": -0.31
+      "current_price": 289.925,
+      "market_value": 9.91,
+      "unrealized_pl": -0.06,
+      "unrealized_pl_pct": -0.57
     },
     {
       "ticker": "AMZN",
-      "qty": 0.084748,
+      "qty": 0.042348,
       "avg_cost": 241.4223,
-      "current_price": 237.18,
-      "market_value": 20.1,
-      "unrealized_pl": -0.36,
-      "unrealized_pl_pct": -1.76
+      "current_price": 235.4,
+      "market_value": 9.97,
+      "unrealized_pl": -0.26,
+      "unrealized_pl_pct": -2.49
     },
     {
       "ticker": "GOOGL",
       "qty": 0.011428,
       "avg_cost": 347.9717,
-      "current_price": 347.89,
-      "market_value": 3.98,
-      "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.02
+      "current_price": 346.85,
+      "market_value": 3.96,
+      "unrealized_pl": -0.01,
+      "unrealized_pl_pct": -0.32
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 560.69,
+      "current_price": 557.57,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -5.85
+      "unrealized_pl_pct": -6.38
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 389.94,
+      "current_price": 386.64,
       "market_value": 0.02,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -4.87
+      "unrealized_pl_pct": -5.68
     },
     {
       "ticker": "NVDA",
       "qty": 0.061844,
       "avg_cost": 207.2943,
-      "current_price": 202.27,
-      "market_value": 12.51,
-      "unrealized_pl": -0.31,
-      "unrealized_pl_pct": -2.42
+      "current_price": 199.6812,
+      "market_value": 12.35,
+      "unrealized_pl": -0.47,
+      "unrealized_pl_pct": -3.67
     }
   ],
   "trades": [
@@ -457,6 +457,17 @@
       "reasoning": "GOOGL shows extremely oversold conditions with RSI at 25.9 (well below 40 buy signal threshold) and a significant -2.38% price decline with high volume of 10.28M shares, confirming strong momentum. This represents an excellent buying opportunity at oversold levels. Currently have minimal GOOGL exposure (0.0% of portfolio), so adding $3.98 position maintains diversification while keeping $1.00 cash buffer as required.",
       "confidence": 9,
       "x_post": "[AlgoMind | 10:30 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows extremely oversold conditions with RSI at 25.9 (well below 40 buy signal threshold) and a significant -2.38% price decline with high volume of 10.28M...\n\nConfidence: 9/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-11T11:00:57.396976-04:00",
+      "action": "SELL",
+      "ticker": "AMZN",
+      "dollar_amount": null,
+      "qty": 0.0424,
+      "price": 235.5224,
+      "reasoning": "AMZN shows the strongest sell signal with RSI at 21.7 (deeply oversold but continuing downward momentum) and is my largest position at 42.2% of portfolio. The stock declined -0.90% today with high volume of 10.26M confirming bearish momentum. With only $1.01 cash available, I need to free up capital before making any new purchases. AMZN has the largest unrealized loss at -$0.50 and represents concentration risk being over 40% of portfolio. Selling half this position will provide buying power while still maintaining exposure to AMZN for potential recovery.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 11:00 ET] SELL AMZN \ud83d\udd34\n\nAMZN shows the strongest sell signal with RSI at 21.7 (deeply oversold but continuing downward momentum) and is my largest position at 42.2% of portfolio. The stock...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -639,6 +650,11 @@
       "date": "2026-06-11",
       "portfolio_value": 47.57,
       "return_pct": -4.86
+    },
+    {
+      "date": "2026-06-11",
+      "portfolio_value": 47.2,
+      "return_pct": -5.6
     }
   ],
   "ai_log": [
@@ -5139,9 +5155,32 @@
         "buy",
         "googl"
       ]
+    },
+    {
+      "timestamp": "2026-06-11T11:00:57.332886-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T11:00:57.391500-04:00",
+      "message": "Trade posted to X: [AlgoMind | 11:00 ET] SELL AMZN \ud83d\udd34\n\nAMZN shows the strongest sell signal with RSI at 21.7 (deeply ove",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T11:00:57.396976-04:00",
+      "message": "AMZN shows the strongest sell signal with RSI at 21.7 (deeply oversold but continuing downward momentum) and is my largest position at 42.2% of portfolio. The stock declined -0.90% today with high volume of 10.26M confirming bearish momentum. With only $1.01 cash available, I need to free up capital before making any new purchases. AMZN has the largest unrealized loss at -$0.50 and represents concentration risk being over 40% of portfolio. Selling half this position will provide buying power while still maintaining exposure to AMZN for potential recovery.",
+      "tags": [
+        "sell",
+        "amzn"
+      ]
     }
   ],
-  "last_updated": "2026-06-11T10:30:42.944297-04:00",
+  "last_updated": "2026-06-11T11:00:57.396976-04:00",
   "last_outlook_date": "2026-06-11",
   "milestones_hit": {
     "first_trade": true,
@@ -5151,6 +5190,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-11T10:30:42.944297-04:00",
-  "total_return_dollar": -2.43
+  "last_cycle_utc": "2026-06-11T11:00:57.396976-04:00",
+  "total_return_dollar": -2.8
 }
