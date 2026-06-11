@@ -1,65 +1,65 @@
 {
-  "portfolio_value": 47.58,
+  "portfolio_value": 47.57,
   "starting_capital": 50.0,
-  "total_return": -4.84,
-  "total_trades": 35,
+  "total_return": -4.86,
+  "total_trades": 36,
   "win_rate": 33.3,
   "start_date": "2026-04-16",
-  "cash": 4.98,
+  "cash": 1.01,
   "holdings": [
     {
       "ticker": "AAPL",
       "qty": 0.034191,
       "avg_cost": 291.598,
-      "current_price": 292.51,
-      "market_value": 10.0,
-      "unrealized_pl": 0.03,
-      "unrealized_pl_pct": 0.31
+      "current_price": 290.705,
+      "market_value": 9.94,
+      "unrealized_pl": -0.03,
+      "unrealized_pl_pct": -0.31
     },
     {
       "ticker": "AMZN",
       "qty": 0.084748,
       "avg_cost": 241.4223,
-      "current_price": 236.84,
-      "market_value": 20.07,
-      "unrealized_pl": -0.39,
-      "unrealized_pl_pct": -1.9
+      "current_price": 237.18,
+      "market_value": 20.1,
+      "unrealized_pl": -0.36,
+      "unrealized_pl_pct": -1.76
     },
     {
       "ticker": "GOOGL",
-      "qty": 1.8e-05,
-      "avg_cost": 368.05,
-      "current_price": 356.155,
-      "market_value": 0.01,
+      "qty": 0.011428,
+      "avg_cost": 347.9717,
+      "current_price": 347.89,
+      "market_value": 3.98,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -3.23
+      "unrealized_pl_pct": -0.02
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 564.27,
+      "current_price": 560.69,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -5.25
+      "unrealized_pl_pct": -5.85
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 395.91,
+      "current_price": 389.94,
       "market_value": 0.02,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -3.41
+      "unrealized_pl_pct": -4.87
     },
     {
       "ticker": "NVDA",
       "qty": 0.061844,
       "avg_cost": 207.2943,
-      "current_price": 202.05,
-      "market_value": 12.5,
-      "unrealized_pl": -0.32,
-      "unrealized_pl_pct": -2.53
+      "current_price": 202.27,
+      "market_value": 12.51,
+      "unrealized_pl": -0.31,
+      "unrealized_pl_pct": -2.42
     }
   ],
   "trades": [
@@ -446,6 +446,17 @@
       "reasoning": "AMZN shows strong oversold conditions with RSI at 27.1 (well below 40 threshold) combined with significant downward momentum of -2.54% on high volume of 38.6M. This presents an excellent contrarian buying opportunity. Current AMZN position is at 31.7% of portfolio, so adding $5 would bring it to approximately 42% - still well under the 50% limit. The oversold RSI suggests a potential bounce is imminent, and AMZN's fundamentals remain strong despite today's selloff.",
       "confidence": 8,
       "x_post": "[AlgoMind | 09:30 ET] BUY AMZN \ud83d\udfe2\n\nAMZN shows strong oversold conditions with RSI at 27.1 (well below 40 threshold) combined with significant downward momentum of -2.54% on high volume of 38.6M. This...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-11T10:30:42.944297-04:00",
+      "action": "BUY",
+      "ticker": "GOOGL",
+      "dollar_amount": 3.98,
+      "qty": 0.011438,
+      "price": 347.9717,
+      "reasoning": "GOOGL shows extremely oversold conditions with RSI at 25.9 (well below 40 buy signal threshold) and a significant -2.38% price decline with high volume of 10.28M shares, confirming strong momentum. This represents an excellent buying opportunity at oversold levels. Currently have minimal GOOGL exposure (0.0% of portfolio), so adding $3.98 position maintains diversification while keeping $1.00 cash buffer as required.",
+      "confidence": 9,
+      "x_post": "[AlgoMind | 10:30 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows extremely oversold conditions with RSI at 25.9 (well below 40 buy signal threshold) and a significant -2.38% price decline with high volume of 10.28M...\n\nConfidence: 9/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -623,6 +634,11 @@
       "date": "2026-06-11",
       "portfolio_value": 47.58,
       "return_pct": -4.84
+    },
+    {
+      "date": "2026-06-11",
+      "portfolio_value": 47.57,
+      "return_pct": -4.86
     }
   ],
   "ai_log": [
@@ -5092,9 +5108,40 @@
         "buy",
         "amzn"
       ]
+    },
+    {
+      "timestamp": "2026-06-11T10:00:32.567102-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_POSITION_PCT: existing $20.12 + $3.98 = $24.10 exceeds 50% cap ($23.82) of $47.65 portfolio",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T10:30:42.876487-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T10:30:42.938402-04:00",
+      "message": "Trade posted to X: [AlgoMind | 10:30 ET] BUY GOOGL \ud83d\udfe2\n\nGOOGL shows extremely oversold conditions with RSI at 25.9 (well ",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T10:30:42.944297-04:00",
+      "message": "GOOGL shows extremely oversold conditions with RSI at 25.9 (well below 40 buy signal threshold) and a significant -2.38% price decline with high volume of 10.28M shares, confirming strong momentum. This represents an excellent buying opportunity at oversold levels. Currently have minimal GOOGL exposure (0.0% of portfolio), so adding $3.98 position maintains diversification while keeping $1.00 cash buffer as required.",
+      "tags": [
+        "buy",
+        "googl"
+      ]
     }
   ],
-  "last_updated": "2026-06-11T09:30:20.085475-04:00",
+  "last_updated": "2026-06-11T10:30:42.944297-04:00",
   "last_outlook_date": "2026-06-11",
   "milestones_hit": {
     "first_trade": true,
@@ -5104,6 +5151,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-11T09:30:20.085475-04:00",
-  "total_return_dollar": -2.42
+  "last_cycle_utc": "2026-06-11T10:30:42.944297-04:00",
+  "total_return_dollar": -2.43
 }
