@@ -5178,10 +5178,90 @@
         "sell",
         "amzn"
       ]
+    },
+    {
+      "timestamp": "2026-06-11T11:31:08.284614-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T12:01:17.716865-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T12:31:26.204008-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T13:01:35.884727-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T13:31:43.704641-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T14:01:50.706539-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T14:31:59.302575-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T15:02:05.769126-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-11T15:32:13.767123-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MAX_TRADES_PER_DAY: 3 orders already placed today (limit 3)",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-12T09:30:06.865391-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Friday, Jun 12\nTop mover: TSLA +4.60% (RSI 44)\nOversold  (RSI<30): AMZN\n\nScanning f",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-06-11T11:00:57.396976-04:00",
-  "last_outlook_date": "2026-06-11",
+  "last_outlook_date": "2026-06-12",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
