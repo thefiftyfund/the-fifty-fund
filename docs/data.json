@@ -1,65 +1,65 @@
 {
-  "portfolio_value": 47.48,
+  "portfolio_value": 47.64,
   "starting_capital": 50.0,
-  "total_return": -5.04,
-  "total_trades": 39,
+  "total_return": -4.72,
+  "total_trades": 40,
   "win_rate": 28.6,
   "start_date": "2026-04-16",
-  "cash": 20.76,
+  "cash": 12.77,
   "holdings": [
     {
       "ticker": "AAPL",
       "qty": 0.034191,
       "avg_cost": 291.598,
-      "current_price": 291.07,
-      "market_value": 9.95,
-      "unrealized_pl": -0.02,
-      "unrealized_pl_pct": -0.18
+      "current_price": 291.885,
+      "market_value": 9.98,
+      "unrealized_pl": 0.01,
+      "unrealized_pl_pct": 0.1
     },
     {
       "ticker": "AMZN",
-      "qty": 0.0,
-      "avg_cost": 239.2935,
-      "current_price": 234.785,
-      "market_value": 0.0,
-      "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 0.0
+      "qty": 0.033781,
+      "avg_cost": 236.526,
+      "current_price": 236.5075,
+      "market_value": 7.99,
+      "unrealized_pl": -0.0,
+      "unrealized_pl_pct": -0.01
     },
     {
       "ticker": "GOOGL",
       "qty": 0.011428,
       "avg_cost": 347.9717,
-      "current_price": 358.84,
-      "market_value": 4.1,
-      "unrealized_pl": 0.12,
-      "unrealized_pl_pct": 3.12
+      "current_price": 362.295,
+      "market_value": 4.14,
+      "unrealized_pl": 0.16,
+      "unrealized_pl_pct": 4.12
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 564.23,
+      "current_price": 565.7573,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -5.26
+      "unrealized_pl_pct": -5.0
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 383.33,
+      "current_price": 384.67,
       "market_value": 0.02,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -6.48
+      "unrealized_pl_pct": -6.16
     },
     {
       "ticker": "NVDA",
       "qty": 0.061844,
       "avg_cost": 207.2943,
-      "current_price": 204.365,
-      "market_value": 12.64,
-      "unrealized_pl": -0.18,
-      "unrealized_pl_pct": -1.41
+      "current_price": 205.825,
+      "market_value": 12.73,
+      "unrealized_pl": -0.09,
+      "unrealized_pl_pct": -0.71
     }
   ],
   "trades": [
@@ -490,6 +490,17 @@
       "reasoning": "AMZN shows the strongest sell signal with RSI at 24.9 (deeply oversold but continuing downward momentum), -3.04% price decline with high volume of 10M+ shares confirming bearish momentum. This is also my largest position at 32.2% of portfolio with -$0.29 P&L loss. The extreme RSI combined with heavy selling volume indicates further downside risk. Selling this position will free up capital to deploy into better opportunities while cutting losses on my worst performer.",
       "confidence": 8,
       "x_post": "[AlgoMind | 10:00 ET] SELL AMZN \ud83d\udd34\n\nAMZN shows the strongest sell signal with RSI at 24.9 (deeply oversold but continuing downward momentum), -3.04% price decline with high volume of 10M+ shares...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-12T10:30:42.420128-04:00",
+      "action": "BUY",
+      "ticker": "AMZN",
+      "dollar_amount": 8.0,
+      "qty": 0.033823,
+      "price": 236.526,
+      "reasoning": "AMZN shows the strongest oversold signal with RSI at 25.9 (well below 40 threshold) combined with significant downward momentum of -2.06% on high volume of 14.96M. This represents an excellent contrarian entry point for a quality tech stock that has been oversold. With $20.76 cash available and no current AMZN position, this $8 allocation would represent about 17% of total portfolio value, well within risk limits. The combination of extreme oversold conditions and high volume suggests a potential reversal opportunity.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 10:30 ET] BUY AMZN \ud83d\udfe2\n\nAMZN shows the strongest oversold signal with RSI at 25.9 (well below 40 threshold) combined with significant downward momentum of -2.06% on high volume of 14.96M....\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -687,6 +698,11 @@
       "date": "2026-06-12",
       "portfolio_value": 47.48,
       "return_pct": -5.04
+    },
+    {
+      "date": "2026-06-12",
+      "portfolio_value": 47.64,
+      "return_pct": -4.72
     }
   ],
   "ai_log": [
@@ -5336,9 +5352,32 @@
         "sell",
         "amzn"
       ]
+    },
+    {
+      "timestamp": "2026-06-12T10:30:42.329362-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-12T10:30:42.413714-04:00",
+      "message": "Trade posted to X: [AlgoMind | 10:30 ET] BUY AMZN \ud83d\udfe2\n\nAMZN shows the strongest oversold signal with RSI at 25.9 (well be",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-12T10:30:42.420128-04:00",
+      "message": "AMZN shows the strongest oversold signal with RSI at 25.9 (well below 40 threshold) combined with significant downward momentum of -2.06% on high volume of 14.96M. This represents an excellent contrarian entry point for a quality tech stock that has been oversold. With $20.76 cash available and no current AMZN position, this $8 allocation would represent about 17% of total portfolio value, well within risk limits. The combination of extreme oversold conditions and high volume suggests a potential reversal opportunity.",
+      "tags": [
+        "buy",
+        "amzn"
+      ]
     }
   ],
-  "last_updated": "2026-06-12T10:00:28.715683-04:00",
+  "last_updated": "2026-06-12T10:30:42.420128-04:00",
   "last_outlook_date": "2026-06-12",
   "milestones_hit": {
     "first_trade": true,
@@ -5348,6 +5387,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-12T10:00:28.715683-04:00",
-  "total_return_dollar": -2.52
+  "last_cycle_utc": "2026-06-12T10:30:42.420128-04:00",
+  "total_return_dollar": -2.36
 }
