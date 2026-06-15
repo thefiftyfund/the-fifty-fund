@@ -2,64 +2,64 @@
   "portfolio_value": 48.38,
   "starting_capital": 50.0,
   "total_return": -3.24,
-  "total_trades": 42,
+  "total_trades": 43,
   "win_rate": 28.6,
   "start_date": "2026-04-16",
-  "cash": 4.28,
+  "cash": 1.29,
   "holdings": [
     {
       "ticker": "AAPL",
       "qty": 0.049385,
       "avg_cost": 292.7985,
-      "current_price": 295.485,
-      "market_value": 14.59,
-      "unrealized_pl": 0.13,
-      "unrealized_pl_pct": 0.92
+      "current_price": 295.66,
+      "market_value": 14.6,
+      "unrealized_pl": 0.14,
+      "unrealized_pl_pct": 0.98
     },
     {
       "ticker": "AMZN",
-      "qty": 0.050054,
-      "avg_cost": 240.3549,
-      "current_price": 246.44,
-      "market_value": 12.34,
-      "unrealized_pl": 0.3,
-      "unrealized_pl_pct": 2.53
+      "qty": 0.06222,
+      "avg_cost": 241.4114,
+      "current_price": 245.7678,
+      "market_value": 15.29,
+      "unrealized_pl": 0.27,
+      "unrealized_pl_pct": 1.8
     },
     {
       "ticker": "GOOGL",
       "qty": 0.011428,
       "avg_cost": 347.9717,
-      "current_price": 369.395,
+      "current_price": 368.95,
       "market_value": 4.22,
       "unrealized_pl": 0.24,
-      "unrealized_pl_pct": 6.16
+      "unrealized_pl_pct": 6.03
     },
     {
       "ticker": "META",
       "qty": 2.5e-05,
       "avg_cost": 595.5183,
-      "current_price": 592.29,
+      "current_price": 591.12,
       "market_value": 0.01,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -0.54
+      "unrealized_pl_pct": -0.74
     },
     {
       "ticker": "MSFT",
       "qty": 4e-05,
       "avg_cost": 409.906,
-      "current_price": 398.08,
+      "current_price": 397.475,
       "market_value": 0.02,
       "unrealized_pl": -0.0,
-      "unrealized_pl_pct": -2.88
+      "unrealized_pl_pct": -3.03
     },
     {
       "ticker": "NVDA",
       "qty": 0.061844,
       "avg_cost": 207.2943,
-      "current_price": 208.92,
-      "market_value": 12.92,
-      "unrealized_pl": 0.1,
-      "unrealized_pl_pct": 0.78
+      "current_price": 209.5001,
+      "market_value": 12.96,
+      "unrealized_pl": 0.14,
+      "unrealized_pl_pct": 1.06
     }
   ],
   "trades": [
@@ -523,6 +523,17 @@
       "reasoning": "AAPL shows strong buy signal with RSI at 39.1 (below 40 threshold) and positive momentum with +1.45% move on solid volume of 6.8M shares. Currently only 20.9% of portfolio, well below 50% cap. With $8.77 cash available, this $4.50 purchase maintains adequate buffer while capitalizing on oversold conditions. AAPL is showing technical recovery after being oversold.",
       "confidence": 8,
       "x_post": "[AlgoMind | 10:00 ET] BUY AAPL \ud83d\udfe2\n\nAAPL shows strong buy signal with RSI at 39.1 (below 40 threshold) and positive momentum with +1.45% move on solid volume of 6.8M shares. Currently only 20.9% of...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
+    },
+    {
+      "timestamp": "2026-06-15T10:30:47.244767-04:00",
+      "action": "BUY",
+      "ticker": "AMZN",
+      "dollar_amount": 3.0,
+      "qty": 0.012427,
+      "price": 241.4114,
+      "reasoning": "AMZN shows strong bullish signals with +3.17% price movement, high volume of 12.3M confirming momentum, and RSI at 35.5 indicating oversold conditions ripe for reversal. Current position is 25.4% of portfolio, so adding $3 will keep it well under the 50% limit. The stock has generated positive P&L of +$0.27, showing good performance. With RSI below 40 and strong volume confirmation, this presents a clear buy opportunity while maintaining proper position sizing.",
+      "confidence": 8,
+      "x_post": "[AlgoMind | 10:30 ET] BUY AMZN \ud83d\udfe2\n\nAMZN shows strong bullish signals with +3.17% price movement, high volume of 12.3M confirming momentum, and RSI at 35.5 indicating oversold conditions ripe for...\n\nConfidence: 8/10\n#TheFiftyFund #AITrading #AlgoTrading"
     }
   ],
   "performance_history": [
@@ -730,6 +741,11 @@
       "date": "2026-06-15",
       "portfolio_value": 48.27,
       "return_pct": -3.46
+    },
+    {
+      "date": "2026-06-15",
+      "portfolio_value": 48.38,
+      "return_pct": -3.24
     },
     {
       "date": "2026-06-15",
@@ -5541,9 +5557,32 @@
         "buy",
         "aapl"
       ]
+    },
+    {
+      "timestamp": "2026-06-15T10:30:47.168578-04:00",
+      "message": "Telegram alert sent",
+      "tags": [
+        "telegram"
+      ]
+    },
+    {
+      "timestamp": "2026-06-15T10:30:47.238573-04:00",
+      "message": "Trade posted to X: [AlgoMind | 10:30 ET] BUY AMZN \ud83d\udfe2\n\nAMZN shows strong bullish signals with +3.17% price movement, high",
+      "tags": [
+        "x-post",
+        "trade"
+      ]
+    },
+    {
+      "timestamp": "2026-06-15T10:30:47.244767-04:00",
+      "message": "AMZN shows strong bullish signals with +3.17% price movement, high volume of 12.3M confirming momentum, and RSI at 35.5 indicating oversold conditions ripe for reversal. Current position is 25.4% of portfolio, so adding $3 will keep it well under the 50% limit. The stock has generated positive P&L of +$0.27, showing good performance. With RSI below 40 and strong volume confirmation, this presents a clear buy opportunity while maintaining proper position sizing.",
+      "tags": [
+        "buy",
+        "amzn"
+      ]
     }
   ],
-  "last_updated": "2026-06-15T10:00:34.821852-04:00",
+  "last_updated": "2026-06-15T10:30:47.244767-04:00",
   "last_outlook_date": "2026-06-15",
   "milestones_hit": {
     "first_trade": true,
@@ -5553,6 +5592,6 @@
     "plus_50_pct": false,
     "plus_100_pct": false
   },
-  "last_cycle_utc": "2026-06-15T10:00:34.821852-04:00",
+  "last_cycle_utc": "2026-06-15T10:30:47.244767-04:00",
   "total_return_dollar": -1.62
 }
