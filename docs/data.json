@@ -5580,10 +5580,66 @@
         "buy",
         "amzn"
       ]
+    },
+    {
+      "timestamp": "2026-06-15T11:00:56.037574-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.29 cash \u2212 $1.00 buffer = $0.29 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-15T11:31:06.502243-04:00",
+      "message": "BLOCKED BUY TSLA \u2014 MIN_ORDER_VALUE: $0.29 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "tsla"
+      ]
+    },
+    {
+      "timestamp": "2026-06-15T12:01:12.656444-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.29 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-15T12:31:18.561597-04:00",
+      "message": "BLOCKED BUY AMZN \u2014 MIN_ORDER_VALUE: $0.29 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "amzn"
+      ]
+    },
+    {
+      "timestamp": "2026-06-15T13:01:25.556882-04:00",
+      "message": "BLOCKED BUY AAPL \u2014 MIN_ORDER_VALUE: $0.29 is below the $1.00 minimum",
+      "tags": [
+        "risk-blocked",
+        "aapl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-15T13:31:31.317769-04:00",
+      "message": "BLOCKED BUY GOOGL \u2014 CASH_BUFFER: $1.29 cash \u2212 $1.00 buffer = $0.29 headroom < $1.00 min trade",
+      "tags": [
+        "risk-blocked",
+        "googl"
+      ]
+    },
+    {
+      "timestamp": "2026-06-16T09:30:38.201769-04:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Tuesday, Jun 16\nTop mover: META +4.67% (RSI 45)\n\nScanning for signals\u2026 #TheFiftyFun",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-06-15T10:30:47.244767-04:00",
-  "last_outlook_date": "2026-06-15",
+  "last_outlook_date": "2026-06-16",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
