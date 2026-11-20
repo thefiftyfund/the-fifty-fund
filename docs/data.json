@@ -6532,10 +6532,18 @@
         "x-post",
         "morning-outlook"
       ]
+    },
+    {
+      "timestamp": "2026-11-20T09:30:21.794878-05:00",
+      "message": "Morning outlook posted to X: \u2600\ufe0f Market open \u2014 Friday, Nov 20\nTop mover: AMZN -3.87% (RSI 61)\nOversold  (RSI<30): NVDA\n\nScanning f",
+      "tags": [
+        "x-post",
+        "morning-outlook"
+      ]
     }
   ],
   "last_updated": "2026-06-15T10:30:47.244767-04:00",
-  "last_outlook_date": "2026-11-19",
+  "last_outlook_date": "2026-11-20",
   "milestones_hit": {
     "first_trade": true,
     "first_profit": true,
